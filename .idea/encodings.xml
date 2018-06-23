@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/client-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-fegin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/server-zuul" charset="UTF-8" />
+  </component>
+</project>

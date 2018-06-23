@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: member1
+  application:
+    name: server-member
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8001/eureka/
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/work_space_1
+  username: jess.zhong
+  password: jess
+#mybatis
+mybatis-config-file: mybatis-config.xml
+mapper-path: /mapper/**.xml
+entity-package: com.jsee.entity

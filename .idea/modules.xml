@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/DemoSpringCloud.iml" filepath="$PROJECT_DIR$/.idea/DemoSpringCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client-config/client-config.iml" filepath="$PROJECT_DIR$/client-config/client-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-fegin/order-fegin.iml" filepath="$PROJECT_DIR$/order-fegin/order-fegin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-config/server-config.iml" filepath="$PROJECT_DIR$/server-config/server-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-member/server-member.iml" filepath="$PROJECT_DIR$/server-member/server-member.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-order/server-order.iml" filepath="$PROJECT_DIR$/server-order/server-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server-zuul/server-zuul.iml" filepath="$PROJECT_DIR$/server-zuul/server-zuul.iml" />
+    </modules>
+  </component>
+</project>
