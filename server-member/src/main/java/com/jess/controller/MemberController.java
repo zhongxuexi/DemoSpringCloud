@@ -1,5 +1,6 @@
 package com.jess.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.jess.entity.Member;
 import com.jess.service.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class MemberController {
         }*/
        count++;
         System.out.println("被调用了："+count+"次");
+
         return iMemberService.getAll();
         //return "富商大贾打个电话广东省";
     }

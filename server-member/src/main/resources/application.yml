@@ -16,3 +16,10 @@ jdbc:
 mybatis-config-file: mybatis-config.xml
 mapper-path: /mapper/**.xml
 entity-package: com.jsee.entity
+#分页
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    pageSizeZero: true
+    params: count=countSql

@@ -1,5 +1,6 @@
 package com.jess.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.jess.dao.IMemberDao;
 import com.jess.entity.Member;
 import com.jess.service.IMemberService;
@@ -17,6 +18,7 @@ public class MemberServiceImpl implements IMemberService {
     private IMemberDao iMemberDao;
     @Override
     public List<Member> getAll() throws Exception{
+        PageHelper.startPage(1,4);
         return iMemberDao.getAll();
     }
 }
