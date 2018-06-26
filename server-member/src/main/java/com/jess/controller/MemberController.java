@@ -5,10 +5,15 @@ import com.jess.entity.Member;
 import com.jess.service.IMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
@@ -21,8 +26,8 @@ public class MemberController {
     @Autowired
     private IMemberService iMemberService;
     private int count=0;
-    @RequestMapping(value = "/getAll")
-    public List<Member> getAll() throws Exception {
+    @RequestMapping(value = "/listAll")
+    public Map<String,Object> getAll(ModelAndView m) throws Exception {
         /*try {
             Thread.sleep(3000);
         } catch (Exception e) {
@@ -30,13 +35,17 @@ public class MemberController {
         }*/
        count++;
         System.out.println("被调用了："+count+"次");
+        Map<String,Object> map = new TreeMap<>();
+        map.put("code","200");
+        map.put("message","成功");
+        map.put("data",iMemberService.getAll());
+        //m.addObject("list",map);
+        return map;
 
-        return iMemberService.getAll();
-        //return "富商大贾打个电话广东省";
     }
 
     @RequestMapping(value = "/getMemberServerApi")
     public String getMemberServerApi() {
-        return "这是 member 服务工程";
+        return "这是 member 微服务服务工程";
     }
 }

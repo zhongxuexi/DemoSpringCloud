@@ -18,7 +18,7 @@ public class MemberServiceImpl implements IMemberService {
     private IMemberDao iMemberDao;
     @Override
     public List<Member> getAll() throws Exception{
-        PageHelper.startPage(1,4);
+        //PageHelper.startPage(1,4);
         return iMemberDao.getAll();
     }
 }
