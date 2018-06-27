@@ -13,4 +13,10 @@ public interface IMemberService{
      * @return
      */
     List<Member> getAll() throws Exception;
+
+    /**
+     * 插入用户
+     * @param member
+     */
+    Integer insertMember(Member member);
 }

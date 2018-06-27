@@ -16,4 +16,13 @@ public class Member {
     private Date createTime;
     private Date updateTime;
     private byte status;
+
+    public Member() {
+    }
+
+    public Member(String name, String sex, Integer age) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+    }
 }

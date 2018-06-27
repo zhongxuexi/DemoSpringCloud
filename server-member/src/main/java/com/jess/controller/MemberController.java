@@ -44,8 +44,10 @@ public class MemberController {
 
     }
 
-    @RequestMapping(value = "/getMemberServerApi")
-    public String getMemberServerApi() {
-        return "这是 member 微服务服务工程";
+    @RequestMapping(value = "/addMember")
+    public String getMemberServerApi(Member member) throws Exception {
+        Member member1=null;
+        iMemberService.insertMember(member1);
+        return "添加成功!";
     }
 }

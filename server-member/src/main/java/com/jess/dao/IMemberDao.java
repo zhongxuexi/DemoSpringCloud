@@ -11,8 +11,14 @@ import java.util.List;
 @Mapper
 public interface IMemberDao {
     /**
-     *
+     *查询所有
      * @return
      */
     List<Member> getAll();
+
+    /**
+     * 插入用户
+     * @param member
+     */
+    void insertMember(Member member);
 }
