@@ -1,8 +1,14 @@
+web:
+  upload-path: ./server-member/src/main/resources/static/upload/
 spring:
   profiles:
     active: member1
   application:
     name: server-member
+    resources:
+        static-locations: classpath:/resources/,classpath:/static/,file:${web.upload-path}
+    mvc:
+      static-path-pattern: /**
   ### FreeMarker 配置
   freemarker:
       allow-request-override: false
@@ -28,7 +34,7 @@ jdbc:
   password: jess
 #mybatis
 mybatis-config-file: mybatis-config.xml
-mapper-path: /mapper/**.xml
+mapper-path: /mapper/**/**.xml
 entity-package: com.jsee.entity
 
 #分页

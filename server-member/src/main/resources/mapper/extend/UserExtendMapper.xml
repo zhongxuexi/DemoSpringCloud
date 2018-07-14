@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jess.dao.extend.UserExtendMapper">
+    <sql id="where_sql">
+        <if test="keyword!=null and keyword!=''">
+            <where>
+                a.user_name like '%${keyword}%'
+                or a.age like '%${keyword}%'
+            </where>
+        </if>
+    </sql>
+
+    <select id="getAll" resultType="com.jess.entity.User" parameterType="java.lang.String">
+        SELECT
+        a.*
+        FROM
+        t_user a
+        <include refid="where_sql"/>
+        ORDER BY
+        a.id asc
+    </select>
+
+    <select id="totalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(1) from t_user a <include refid="where_sql"/>
+    </select>
+
+    <insert id="insertUser" parameterType="com.jess.entity.User">
+        insert into
+        t_user (name,sex,age)
+        values (#{name},#{sex},#{age})
+    </insert>
+
+
+
+</mapper>
