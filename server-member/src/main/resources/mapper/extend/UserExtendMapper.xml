@@ -4,12 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jess.dao.extend.UserExtendMapper">
     <sql id="where_sql">
-        <if test="keyword!=null and keyword!=''">
-            <where>
-                a.user_name like '%${keyword}%'
-                or a.age like '%${keyword}%'
-            </where>
-        </if>
+        <where>
+            1=1 and a.delete_state = '0'
+            <if test="keyword!=null and keyword!=''">
+                and (a.real_name like CONCAT('%',#{keyword},'%') or
+                a.user_name like CONCAT('%',#{keyword},'%') or
+                a.education like CONCAT('%',#{keyword},'%') or
+                a.native_place like CONCAT('%',#{keyword},'%') or
+                a.address like CONCAT('%',#{keyword},'%')
+                )
+            </if>
+        </where>
     </sql>
 
     <select id="getAll" resultType="com.jess.entity.User" parameterType="java.lang.String">
@@ -19,19 +24,12 @@
         t_user a
         <include refid="where_sql"/>
         ORDER BY
-        a.id asc
+        a.create_time desc
     </select>
 
     <select id="totalCount" resultType="java.lang.Integer" parameterType="java.lang.String">
         select count(1) from t_user a <include refid="where_sql"/>
     </select>
-
-    <insert id="insertUser" parameterType="com.jess.entity.User">
-        insert into
-        t_user (name,sex,age)
-        values (#{name},#{sex},#{age})
-    </insert>
-
 
 
 </mapper>

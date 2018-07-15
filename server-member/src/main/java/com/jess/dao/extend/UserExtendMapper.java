@@ -22,9 +22,4 @@ public interface UserExtendMapper {
      */
     int totalCount(@Param("keyword") String keyword);
 
-    /**
-     * 插入用户
-     * @param user
-     */
-    void insertUser(User user);
 }

@@ -1,7 +1,11 @@
 package com.jess.controller;
 
+import com.google.common.collect.Maps;
 import com.jess.entity.User;
 import com.jess.service.UserService;
+import com.jess.util.CodeMsg;
+import com.jess.util.PageBean;
+import com.jess.util.Result;
 import com.jess.util.SpringContextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +25,7 @@ import java.util.*;
  */
 @RestController
 @CrossOrigin
-public class UserController {
+public class UserController extends BaseController{
     @Value("${web.upload-path}")
     private String path;
     @Autowired
@@ -34,28 +38,87 @@ public class UserController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/listByPage")
-    public Map<String,Object> getAll(@RequestParam(required = false,value = "keyword",defaultValue = "") String keyword,
+    @RequestMapping(value = "/findByPage")
+    public Result getAll(@RequestParam(required = false,value = "keyword",defaultValue = "") String keyword,
                                     @RequestParam(required = false,value = "currentPage",defaultValue = "1") Integer currentPage,
                                      @RequestParam(required = false,value = "pageSize",defaultValue = "5") Integer pageSize) throws Exception {
-        Map<String,Object> map = new TreeMap<>();
-        map.put("code","200");
-        map.put("message","成功");
-        map.put("data",userService.getAllByPage(keyword,currentPage,pageSize));
-        return map;
+        PageBean<User> page = userService.findByPage(keyword, currentPage, pageSize);
+        return Result.success(page.getItems(),page.getTotalNum());
     }
 
-    @RequestMapping(value = "/addMember")
-    public String getMemberServerApi(User user) throws Exception {
-        User user1=null;
-        userService.insertUser(user1);
-        return "添加成功!";
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/add")
+    public Result addUser(@RequestBody User user) throws Exception {
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
+        Integer count = userService.addUser(user);
+        return getResult(count);
     }
 
-    @RequestMapping(value = "/test")
-    public String test(){
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/update")
+    public Result updateUser(@RequestBody User user) throws Exception {
+        user.setUpdateTime(new Date());
+        Integer count = userService.updateUser(user);
+        return getResult(count);
+    }
 
-        return "这是测试";
+    /**
+     * 通过主键ID删除用户
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/delete")
+    public Result deleteUser(Long id) throws Exception {
+        Integer count = userService.deleteUser(id);
+        return getResult(count);
+    }
+
+    /**
+     * 根据用户主键ID查询用户信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findUserById")
+    public Result findUserById(Long id) throws Exception {
+        User user = userService.findUserById(id);
+        return getResult(user);
+    }
+
+    /**
+     * 根据用户名字模糊查询用户信息
+     * @param userName
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findUserByName")
+    public Result findUserByName(String userName) throws Exception {
+        List<User> users = userService.findUserByName(userName);
+        return getResult(users);
+    }
+
+    /**
+     * 根据用户年龄查询用户信息
+     * @param age
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findUserByAge")
+    public Result findUserByName(Byte age) throws Exception {
+        List<User> users = userService.findUserByAge(age);
+        return getResult(users);
     }
 
     @PostMapping(value = "/upload")
@@ -101,6 +164,11 @@ public class UserController {
             System.out.println("文件为空");
         }
         return "";
+    }
+
+    @RequestMapping(value = "/test")
+    public String test(){
+        return "这是接口测试";
     }
 
 }

@@ -1,6 +1,8 @@
 package com.jess.service;
 
 import com.jess.entity.User;
+import com.jess.util.PageBean;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
@@ -9,14 +11,60 @@ import java.util.List;
  */
 public interface UserService {
     /**
-     *
+     * 条件查询+分页
+     * @param keyword
+     * @param currentPage
+     * @param pageSize
      * @return
+     * @throws Exception
      */
-    List<User> getAllByPage(String keyword, int currentPage, int pageSize) throws Exception;
+    PageBean<User> findByPage(String keyword, int currentPage, int pageSize) throws Exception;
 
     /**
-     * 插入用户
+     * 新增用户
      * @param user
+     * @return
+     * @throws Exception
      */
-    Integer insertUser(User user);
+    Integer addUser(User user)  throws Exception;
+
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    Integer updateUser(User user) throws Exception;
+
+    /**
+     * 通过主键ID删除用户
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Integer deleteUser(Long id) throws Exception;
+
+    /**
+     * 根据用户主键ID查询用户信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    User findUserById(Long id) throws Exception;
+
+    /**
+     * 根据用户名字模糊查询用户信息
+     * @param userName
+     * @return
+     * @throws Exception
+     */
+    List<User> findUserByName(String userName) throws Exception;
+
+    /**
+     * 根据用户年龄查询用户信息
+     * @param age
+     * @return
+     * @throws Exception
+     */
+    List<User> findUserByAge(Byte age) throws Exception;
 }
