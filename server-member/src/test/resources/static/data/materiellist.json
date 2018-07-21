@@ -1,0 +1,44 @@
+﻿[
+	{
+		"typename":"ESG专区",
+		"name": "ESG投资",
+		"person":"陈晔嘉",
+		"date":"2018-07-04",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/ESG专区/ESG投资.pptx"
+	},
+	{
+		"typename":"ETP介绍",
+		"name": "华宝ETP",
+		"person":"陈晔嘉",
+		"date":"2018-06-24",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/ETP介绍/华宝ETP.pdf"
+	},
+	{
+		"typename":"公司介绍",
+		"name": "华宝兴业基金公司一页通",
+		"person":"陈晔嘉",
+		"date":"2018-06-24",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/公司介绍/（更新至20170831）华宝兴业基金公司一页通.pdf"
+	},
+	{
+		"typename":"公司介绍",
+		"name": "华宝基金介绍PPT",
+		"person":"陈晔嘉",
+		"date":"2018-06-24",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/公司介绍/华宝基金介绍PPT-201804.pdf"
+	},
+	{
+		"typename":"英文材料",
+		"name": "Fortune SG Listed Money Market Fund_December 2017",
+		"person":"陈晔嘉",
+		"date":"2018-06-24",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/英文材料/Fortune SG Listed Money Market Fund_December 2017.pptx"
+	},
+	{
+		"typename":"英文材料",
+		"name": "云图折页英文版20171231-v5",
+		"person":"陈晔嘉",
+		"date":"2018-06-24",
+		"path": "http://fsapi.fsfund.com/dkcjapp/files/英文材料/云图折页英文版20171231-v5.docx"
+	}
+]

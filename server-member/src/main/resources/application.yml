@@ -1,5 +1,6 @@
 web:
-  upload-path: ./server-member/src/main/resources/static/upload/
+  #upload-path: ./server-member/src/main/resources/static/upload/
+  upload-path: E:\workSpaces\work_space_4\upload
 spring:
   profiles:
     active: member1
@@ -23,13 +24,13 @@ spring:
       template-loader-path: classpath:/templates/
       #设置面板后缀
       suffix: .html
-eureka:
-  client:
-    service-url:
-      defaultZone: http://server1:8001/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://server1:8001/eureka/
 jdbc:
   driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/work_space_1?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  url: jdbc:mysql://localhost:3306/work_space_4?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
   username: jess.zhong
   password: jess
 #mybatis
@@ -44,3 +45,14 @@ pagehelper:
     supportMethodsArguments: true
     pageSizeZero: true
     params: count=countSql
+# 日志配置
+logging:
+  file: /home/springCloud/log/jess.log  #日志输出目录
+  level:
+      # com.jess包下所有class以DEBUG级别输出
+      com.jess: DEBUG
+      # root日志以WARN级别输出
+      root: WARN
+      org:
+        springframework:
+          web: DEBUG

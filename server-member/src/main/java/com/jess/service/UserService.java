@@ -45,6 +45,14 @@ public interface UserService {
     Integer deleteUser(Long id) throws Exception;
 
     /**
+     * 通过主键ID批量删除用户
+     * @param ids
+     * @return
+     * @throws Exception
+     */
+    Integer batchDelete(String ids) throws Exception;
+
+    /**
      * 根据用户主键ID查询用户信息
      * @param id
      * @return

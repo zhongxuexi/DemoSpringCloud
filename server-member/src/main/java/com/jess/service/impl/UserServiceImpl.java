@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public PageBean<User> findByPage(String keyword, int currentPage, int pageSize) throws Exception{
+    public PageBean<User> findByPage(String keyword, int currentPage, int pageSize) throws Exception {
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
         PageHelper.startPage(currentPage, pageSize);
         List<User> list = userExtendMapper.getAll(keyword);            //获取所有数据
@@ -34,30 +34,55 @@ public class UserServiceImpl implements UserService {
         pageData.setItems(list);
         return pageData;
     }
+
     @Transactional
     @Override
     public Integer addUser(User user) {
-        if (user==null){
+        if (user == null) {
             return 0;
         }
         return userMapper.insertSelective(user);
     }
+
     @Transactional
     @Override
     public Integer updateUser(User user) throws Exception {
-        if (user==null){
+        if (user == null) {
             return 0;
         }
         return userMapper.updateByPrimaryKeySelective(user);
     }
+
     @Transactional
     @Override
     public Integer deleteUser(Long id) throws Exception {
+        int a = 5/0;
         User user = new User();
         user.setId(id);
         user.setDeleteState("1");
         user.setUpdateTime(new Date());
         return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Transactional
+    @Override
+    public Integer batchDelete(String ids) throws Exception {
+        int count = 0;
+        if(ids.length()>0){
+            String[] idArray = ids.split(",");
+            if (idArray != null && idArray.length > 0) {
+                for (String id : idArray) {
+                    if (deleteUser(Long.parseLong(id)) > 0) {
+                        count++;
+                    } else {
+                        return 0;
+                    }
+
+                }
+            }
+        }
+
+        return count;
     }
 
     @Override
@@ -68,7 +93,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUserByName(String userName) throws Exception {
         UserExample example = new UserExample();
-        example.or().andUserNameLike("%"+userName+"%");
+        example.or().andUserNameLike("%" + userName + "%");
         return userMapper.selectByExample(example);
     }
 

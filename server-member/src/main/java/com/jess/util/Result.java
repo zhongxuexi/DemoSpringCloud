@@ -13,7 +13,7 @@ public class Result<T> {
     {
         this.code = 0;
         this.msg = "成功";
-        this.count = 1;
+        this.count = 0;
         System.out.println("初始化...");
     }
 

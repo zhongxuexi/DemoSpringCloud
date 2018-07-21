@@ -3,10 +3,9 @@ package com.jess.controller;
 import com.google.common.collect.Maps;
 import com.jess.entity.User;
 import com.jess.service.UserService;
-import com.jess.util.CodeMsg;
-import com.jess.util.PageBean;
-import com.jess.util.Result;
-import com.jess.util.SpringContextUtils;
+import com.jess.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +25,7 @@ import java.util.*;
 @RestController
 @CrossOrigin
 public class UserController extends BaseController{
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Value("${web.upload-path}")
     private String path;
     @Autowired
@@ -81,7 +81,25 @@ public class UserController extends BaseController{
      */
     @RequestMapping(value = "/delete")
     public Result deleteUser(Long id) throws Exception {
-        Integer count = userService.deleteUser(id);
+        Integer count = 0;
+        try{
+            count =  userService.deleteUser(id);
+        }catch (Exception e){
+            //EmailUtil.sendHtmlMail("jess.zhong@aliyun.com","异常报告",this.getClass()+"类的deleteUser方法报错，信息："+e.getMessage());
+            logger.error("异常报告:"+this.getClass()+"类的deleteUser方法报错，信息---"+e.getMessage());
+        }
+        return getResult(count);
+    }
+
+    /**
+     * 通过主键ID批量删除用户
+     * @param ids
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/batchDelete")
+    public Result batchDelete(String ids) throws Exception {
+       Integer count = userService.batchDelete(ids);
         return getResult(count);
     }
 
