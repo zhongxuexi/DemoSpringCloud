@@ -19,7 +19,7 @@
         </commentGenerator>
         <!--数据库链接 参数 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/work_space_1" userId="jess.zhong"
+                        connectionURL="jdbc:mysql://localhost:3306/work_space_4" userId="jess.zhong"
                         password="jess">
         </jdbcConnection>
         <javaTypeResolver>

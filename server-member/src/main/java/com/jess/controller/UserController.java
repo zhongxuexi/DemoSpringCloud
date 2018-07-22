@@ -1,21 +1,13 @@
 package com.jess.controller;
-
-import com.google.common.collect.Maps;
+import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
+import com.jess.service.FileUploadService;
 import com.jess.service.UserService;
 import com.jess.util.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 
@@ -25,11 +17,10 @@ import java.util.*;
 @RestController
 @CrossOrigin
 public class UserController extends BaseController{
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Value("${web.upload-path}")
-    private String path;
     @Autowired
     private UserService userService;
+    @Autowired
+    private FileUploadService fileUploadService;
 
     /**
      *分页功能(集成mybatis的分页插件pageHelper实现)
@@ -86,7 +77,9 @@ public class UserController extends BaseController{
             count =  userService.deleteUser(id);
         }catch (Exception e){
             //EmailUtil.sendHtmlMail("jess.zhong@aliyun.com","异常报告",this.getClass()+"类的deleteUser方法报错，信息："+e.getMessage());
-            logger.error("异常报告:"+this.getClass()+"类的deleteUser方法报错，信息---"+e.getMessage());
+            String message = "异常报告:deleteUser方法报错，信息---"+e.getMessage();
+            //System.out.println(message);
+            LogUtil.getLogger(this.getClass()).error(message);
         }
         return getResult(count);
     }
@@ -139,41 +132,16 @@ public class UserController extends BaseController{
         return getResult(users);
     }
 
-    @PostMapping(value = "/upload")
-    public String upload(@RequestParam("file") MultipartFile file,HttpServletRequest request){
+    @RequestMapping(value = "/upload")
+    public Map<String, Object> upload(@RequestParam("file") MultipartFile file,HttpServletRequest request){
         if (null != file) {
             String fileName = file.getOriginalFilename();// 文件原名称
             // 判断文件类型
             String type = fileName.indexOf(".")!=-1?fileName.substring(fileName.lastIndexOf(".")+1, fileName.length()):null;// 文件类型
                 if (type!=null) {// 判断文件类型是否为空
                     if ("GIF".equals(type.toUpperCase())||"PNG".equals(type.toUpperCase())||"JPG".equals(type.toUpperCase())) {
-                        // 自定义的文件名称
-                        String trueFileName = fileName;//+String.valueOf(System.currentTimeMillis());
-                        try {
-                            File localFile = new File(path,trueFileName);
-                            if (!localFile.exists()) { //如果不存在 则创建
-                                //先得到文件的上级目录，并创建上级目录，在创建文件
-                                localFile.getParentFile().mkdirs();
-                                //创建文件
-                                localFile.createNewFile();
-                            }
-                            file.transferTo(localFile);// 转存文件
-
-                            //数据库存储的相对路径
-                            WebApplicationContext webApplicationContext = (WebApplicationContext) SpringContextUtils.applicationContext;
-                            ServletContext servletContext = webApplicationContext.getServletContext();
-                            String projectPath = servletContext.getContextPath();
-                            String contextpath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+projectPath;
-                            String jdbcurl = contextpath + "/upload/"+trueFileName;
-                            System.out.println("相对路径:"+jdbcurl);
-                            return jdbcurl;//path;
-                        } catch (IllegalStateException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                        Map<String, Object> map = fileUploadService.upload(file);
+                        return map;
                     }else {
                         System.out.println("不是我们想要的文件类型,请按要求重新上传");
                     }
@@ -181,12 +149,24 @@ public class UserController extends BaseController{
         }else{
             System.out.println("文件为空");
         }
-        return "";
+        return null;
+    }
+
+    /**
+     * 用户注册
+     * @param registerUser
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/register")
+    public Result register(@RequestBody RegisterUser registerUser) throws Exception {
+
+        return getResult(1);
     }
 
     @RequestMapping(value = "/test")
-    public String test(){
-        return "这是接口测试";
+    public User test(){
+        return new User();
     }
 
 }

@@ -1,15 +1,21 @@
 web:
-  #upload-path: ./server-member/src/main/resources/static/upload/
-  upload-path: E:\workSpaces\work_space_4\upload
+#本地环境
+  upload-path: E:\workSpaces\work_space_4\upload_file\
+  upload-url: http://localhost:8080/file
+#linux环境
+#  upload-path: /home/springCloud/upload_file/
+#  upload-url: http://192.168.0.188:8080/file
 spring:
   profiles:
     active: member1
   application:
     name: server-member
-    resources:
-        static-locations: classpath:/resources/,classpath:/static/,file:${web.upload-path}
-    mvc:
-      static-path-pattern: /**
+  http:
+    multipart:
+      maxFileSize: 5Mb
+      maxRequestSize: 5Mb
+#    mvc:
+#      static-path-pattern: /**
   ### FreeMarker 配置
   freemarker:
       allow-request-override: false
@@ -24,10 +30,10 @@ spring:
       template-loader-path: classpath:/templates/
       #设置面板后缀
       suffix: .html
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://server1:8001/eureka/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8001/eureka/
 jdbc:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/work_space_4?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
