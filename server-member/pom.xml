@@ -3,26 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.jess</groupId>
 	<artifactId>server-member</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>server-member</name>
-	<description>Server Member</description>
+	<description>会员微服务</description>
 
 	<parent>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-parent</artifactId>
-		<version>Camden.SR7</version>
+		<groupId>com.jess</groupId>
+		<artifactId>DemoSpringCloud</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<fastjson_version>1.2.28</fastjson_version>
-	</properties>
 
 	<dependencies>
 
@@ -31,35 +22,6 @@
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -77,20 +39,18 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>${fastjson_version}</version>
+			<version>1.2.28</version>
 		</dependency>
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+
 		<!--  mybatis逆向工程jar包 -->
 		<dependency>
 			<groupId>org.mybatis.generator</groupId>
@@ -103,16 +63,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.3</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+
 		<!-- java ee -->
 		<dependency>
 			<groupId>javax</groupId>
@@ -120,10 +83,10 @@
 			<version>7.0</version>
 		</dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <version>1.5.6.RELEASE</version>
+            <groupId>com.jess</groupId>
+            <artifactId>server-common-api</artifactId>
         </dependency>
+
     </dependencies>
 
 	<build>

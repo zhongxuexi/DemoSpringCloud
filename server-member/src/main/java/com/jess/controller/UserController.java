@@ -2,6 +2,7 @@ package com.jess.controller;
 import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
 import com.jess.service.FileUploadService;
+import com.jess.commons.api.service.TestService;
 import com.jess.service.UserService;
 import com.jess.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class UserController extends BaseController{
     private UserService userService;
     @Autowired
     private FileUploadService fileUploadService;
+    @Autowired
+    private TestService testService;
 
     /**
      *分页功能(集成mybatis的分页插件pageHelper实现)
@@ -80,6 +83,7 @@ public class UserController extends BaseController{
             String message = "异常报告:deleteUser方法报错，信息---"+e.getMessage();
             //System.out.println(message);
             LogUtil.getLogger(this.getClass()).error(message);
+            //throw new Exception(message);
         }
         return getResult(count);
     }
@@ -165,8 +169,8 @@ public class UserController extends BaseController{
     }
 
     @RequestMapping(value = "/test")
-    public User test(){
-        return new User();
+    public String test(){
+        return testService.findString();
     }
 
 }

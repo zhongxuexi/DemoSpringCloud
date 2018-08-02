@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>server-zuul</artifactId>
+	<artifactId>server-commons</artifactId>
 	<packaging>jar</packaging>
 
-	<name>server-zuul</name>
-	<description>网关微服务</description>
+	<name>server-commons</name>
+	<description>公共基础服务</description>
 
 	<parent>
 		<groupId>com.jess</groupId>
@@ -16,21 +16,6 @@
 	</parent>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zuul</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-ribbon</artifactId>
-		</dependency>
 
 	</dependencies>
 

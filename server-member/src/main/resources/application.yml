@@ -53,7 +53,8 @@ pagehelper:
     params: count=countSql
 # 日志配置
 logging:
-  file: /home/springCloud/log/jess.log  #日志输出目录
+#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
+  file: E:\workSpaces\work_space_4\DemoSpringCloud\logs\jess.log  #日志输出目录--本地环境
   level:
       # com.jess包下所有class以DEBUG级别输出
       com.jess: DEBUG
