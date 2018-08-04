@@ -1,4 +1,5 @@
 package com.jess.controller;
+import com.jess.commons.api.service.RedisService;
 import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
 import com.jess.service.FileUploadService;
@@ -24,6 +25,8 @@ public class UserController extends BaseController{
     private FileUploadService fileUploadService;
     @Autowired
     private TestService testService;
+    @Autowired
+    private RedisService redisService;
 
     /**
      *分页功能(集成mybatis的分页插件pageHelper实现)
@@ -75,16 +78,7 @@ public class UserController extends BaseController{
      */
     @RequestMapping(value = "/delete")
     public Result deleteUser(Long id) throws Exception {
-        Integer count = 0;
-        try{
-            count =  userService.deleteUser(id);
-        }catch (Exception e){
-            //EmailUtil.sendHtmlMail("jess.zhong@aliyun.com","异常报告",this.getClass()+"类的deleteUser方法报错，信息："+e.getMessage());
-            String message = "异常报告:deleteUser方法报错，信息---"+e.getMessage();
-            //System.out.println(message);
-            LogUtil.getLogger(this.getClass()).error(message);
-            //throw new Exception(message);
-        }
+        Integer count = userService.deleteUser(id);
         return getResult(count);
     }
 
@@ -170,7 +164,8 @@ public class UserController extends BaseController{
 
     @RequestMapping(value = "/test")
     public String test(){
-        return testService.findString();
+        redisService.set("fsfund","zhong");
+        return redisService.get("fsfund");
     }
 
 }

@@ -25,11 +25,8 @@ import java.util.Map.Entry;
  */
 @Component
 public class RedisUtil {
-
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(RedisUtil.class);
 
-	
 	@Autowired
 	private RedisConfig redisConfig;
 
@@ -178,9 +175,7 @@ public class RedisUtil {
 		}
 		return true;
 	}
-	
-	
-	
+
 	public Map<String,String> hgetAll(String key) {
 
 		Jedis jedis = null;

@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -26,9 +27,9 @@ import java.util.stream.Collectors;
  * <p>Date: 2017年11月18日</p>
  */
 @Service
-public class JedisTemplate {
+public class RedisService {
 
-	public JedisTemplate() {
+	public RedisService() {
 		super();
 	}
 

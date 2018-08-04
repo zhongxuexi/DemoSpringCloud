@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8001
 spring:
   application:
     name: server-zuul
@@ -14,7 +14,7 @@ eureka:
   lease-renewal-interval-in-seconds: 5
   client:
     service-url:
-      defaultZone: http://server1:8001/eureka/
+      defaultZone: http://server1:8101/eureka/
 zuul:
  # 禁止服务自动添加
   ignoredServices: '*'

@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>server-common-api</artifactId>
+	<groupId>com.jess.commons</groupId>
+	<artifactId>server-commons-api</artifactId>
 	<packaging>jar</packaging>
 
-	<name>server-common-api</name>
+	<name>server-commons-api</name>
 	<description>项目公共api</description>
 
 	<parent>
@@ -17,13 +17,27 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jess</groupId>
+			<groupId>com.jess.commons</groupId>
 			<artifactId>server-commons</artifactId>
+			<version>${server-commons.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-core</artifactId>
+            <version>9.6.0</version>
+        </dependency>
+		<dependency>
+			<groupId>com.netflix.hystrix</groupId>
+			<artifactId>hystrix-core</artifactId>
+			<version>1.5.12</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jess</groupId>
-			<artifactId>server-commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -32,6 +46,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<classifier>exe</classifier>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

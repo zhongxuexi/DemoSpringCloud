@@ -114,10 +114,5 @@ public class JSONUtil {
 	public static <T> List<T> toList(Object jsonData, Class<T> clazz){
 		return JSON.parseArray(JSON.toJSONString(jsonData), clazz);
 	}
-	
-	
-	public static void main(String[] args) {
-		
-	}
 
 }

@@ -9,12 +9,13 @@
 	<packaging>pom</packaging>
 	<!--引入的子模块-->
 	<modules>
-		<module>server-common-api</module>
+		<module>server-zuul</module>
 		<module>server-eureka</module>
+		<module>server-commons</module>
+		<module>server-commons-api</module>
 		<module>server-fegin</module>
 		<module>server-member</module>
 		<module>server-order</module>
-		<module>server-zuul</module>
 	</modules>
 
 	<name>DemoSpringCloud</name>
@@ -32,7 +33,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Edgware.SR3</spring-cloud.version>
-		<server-common.version>0.0.1-SNAPSHOT</server-common.version>
+		<server-commons.version>0.0.1-SNAPSHOT</server-commons.version>
 	</properties>
 
 	<dependencies>
@@ -40,57 +41,61 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>tk.mybatis</groupId>
 			<artifactId>mapper</artifactId>
 			<version>3.4.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 		<!--引入mock框架-->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
 		</dependency>
-
 		<!--rabbitmq-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.13</version>
 		</dependency>
 	</dependencies>
 
@@ -102,11 +107,6 @@
 				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.jess</groupId>
-				<artifactId>server-common-api</artifactId>
-				<version>${server-common.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -130,6 +130,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

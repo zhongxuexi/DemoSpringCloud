@@ -1,7 +1,7 @@
 web:
 #本地环境
   upload-path: E:\workSpaces\work_space_4\upload_file\
-  upload-url: http://localhost:8080/file
+  upload-url: http://localhost:9001/file
 #linux环境
 #  upload-path: /home/springCloud/upload_file/
 #  upload-url: http://192.168.0.188:8080/file
@@ -33,7 +33,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://server1:8001/eureka/
+      defaultZone: http://server1:8101/eureka/
 jdbc:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://localhost:3306/work_space_4?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
@@ -51,6 +51,18 @@ pagehelper:
     supportMethodsArguments: true
     pageSizeZero: true
     params: count=countSql
+redis:
+  database: 0
+  host: 127.0.0.1
+  password:
+  port: 6379
+  pool:
+    max-active: 8
+    max-wait: -1
+    max-idle: 8
+    min-idle: 0
+  timeout: 0
+  data-timeout: 600
 # 日志配置
 logging:
 #  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境

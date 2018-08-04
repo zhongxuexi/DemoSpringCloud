@@ -3,18 +3,23 @@ package com.jess.commons.api.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>ClassName: RedisConfig</p>
@@ -22,18 +27,19 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
  * <p> Author: jess.zhong </p>
  * <p> Date: 2018年8月1日</p>
  */
+@Data
 @Configuration
 @EnableCaching
 public class RedisConfig {
-	@Value("${appInfo.redis.host}")
+	@Value("${redis.host}")
 	private String host;
-	@Value("${appInfo.redis.port}")
+	@Value("${redis.port}")
 	private int port;
-	@Value("${appInfo.redis.timeout}")
+	@Value("${redis.timeout}")
 	private int timeout;
-	@Value("${appInfo.redis.password}")
+	@Value("${redis.password}")
 	private String password;
-	@Value("${appInfo.redis.data-timeout}")
+	@Value("${redis.data-timeout}")
 	private int dataTimeout;
 
 	/**
@@ -60,6 +66,7 @@ public class RedisConfig {
 	 * @return
 	 */
 	@Bean
+	@ConfigurationProperties(prefix = "spring.redis")
 	public JedisConnectionFactory redisConnectionFactory() {
 		JedisConnectionFactory factory = new JedisConnectionFactory();
 		factory.setHostName(host);
@@ -85,12 +92,13 @@ public class RedisConfig {
 	/**
 	 * <p>Title: 设置序列化工具，开启事务</p>
 	 * <p> Description: 这样ReportBean不需要实现Serializable</p>
-	 * @param factory
+	 * @param redisConnectionFactory
 	 * @return RedisTemplate
 	 */
 	@Bean
-	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-		StringRedisTemplate template = new StringRedisTemplate(factory);
+	@ConfigurationProperties(prefix = "spring.redis")
+	public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+		StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
 		template.setEnableTransactionSupport(true);// 开启事务支持 ,在方法或者类上统一使用@Transactional标注事务
 		setSerializer(template);
 		template.afterPropertiesSet();
@@ -106,46 +114,6 @@ public class RedisConfig {
 		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 		jackson2JsonRedisSerializer.setObjectMapper(om);
 		template.setValueSerializer(jackson2JsonRedisSerializer);
-	}
-
-	public String getHost() {
-		return host;
-	}
-
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-	public int getTimeout() {
-		return timeout;
-	}
-
-	public void setTimeout(int timeout) {
-		this.timeout = timeout;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getDataTimeout() {
-		return dataTimeout;
-	}
-
-	public void setDataTimeout(int dataTimeout) {
-		this.dataTimeout = dataTimeout;
 	}
 
 }
