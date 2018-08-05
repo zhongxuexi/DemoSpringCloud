@@ -1,9 +1,7 @@
 package com.jess.controller;
-import com.jess.commons.api.service.RedisService;
 import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
 import com.jess.service.FileUploadService;
-import com.jess.commons.api.service.TestService;
 import com.jess.service.UserService;
 import com.jess.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +21,6 @@ public class UserController extends BaseController{
     private UserService userService;
     @Autowired
     private FileUploadService fileUploadService;
-    @Autowired
-    private TestService testService;
-    @Autowired
-    private RedisService redisService;
 
     /**
      *分页功能(集成mybatis的分页插件pageHelper实现)
@@ -164,8 +158,8 @@ public class UserController extends BaseController{
 
     @RequestMapping(value = "/test")
     public String test(){
-        redisService.set("fsfund","zhong");
-        return redisService.get("fsfund");
+
+        return null;
     }
 
 }

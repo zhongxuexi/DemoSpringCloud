@@ -1,0 +1,12 @@
+##mappers
+#mapper:
+#  mappers: com.jess.commons.mapper.MyMapper
+#  not-empty: false
+#  identity: MYSQL
+##pagehelper分页插件
+#pagehelper:
+#    helperDialect: mysql
+#    reasonable: true
+#    supportMethodsArguments: true
+#    pageSizeZero: true
+#    params: count=countSql

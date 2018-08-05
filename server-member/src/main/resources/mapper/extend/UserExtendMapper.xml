@@ -3,6 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jess.dao.extend.UserExtendMapper">
+    <resultMap id="BaseResultMap" type="com.jess.entity.User" >
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <constructor >
+            <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="age" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="education" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="native_place" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="delete_state" jdbcType="CHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
     <sql id="where_sql">
         <where>
             1=1 and a.delete_state = '0'
@@ -17,7 +39,7 @@
         </where>
     </sql>
 
-    <select id="getAll" resultType="com.jess.entity.User" parameterType="java.lang.String">
+    <select id="getAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         a.*
         FROM

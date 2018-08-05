@@ -2,7 +2,6 @@ package com.jess.service;
 
 import com.jess.entity.User;
 import com.jess.util.PageBean;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 

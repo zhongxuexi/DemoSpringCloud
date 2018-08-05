@@ -1,7 +1,7 @@
 package com.jess.dao.extend;
 
+import com.jess.commons.mapper.MyMapper;
 import com.jess.entity.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by zhongxuexi on 2018/6/7.
  */
-public interface UserExtendMapper {
+public interface UserExtendMapper{
     /**
      *查询所有
      * @return
