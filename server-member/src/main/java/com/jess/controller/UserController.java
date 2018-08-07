@@ -1,9 +1,12 @@
 package com.jess.controller;
+import com.jess.commons.util.Result;
 import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
 import com.jess.service.FileUploadService;
 import com.jess.service.UserService;
 import com.jess.util.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +19,7 @@ import java.util.*;
  */
 @RestController
 @CrossOrigin
+@Api(value="用户管理")
 public class UserController extends BaseController{
     @Autowired
     private UserService userService;
@@ -29,10 +33,11 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/findByPage")
+    @ApiOperation(value="分页查询", notes="分页查询")
+    @GetMapping(value = "/findByPage")
     public Result getAll(@RequestParam(required = false,value = "keyword",defaultValue = "") String keyword,
-                                    @RequestParam(required = false,value = "currentPage",defaultValue = "1") Integer currentPage,
-                                     @RequestParam(required = false,value = "pageSize",defaultValue = "5") Integer pageSize) throws Exception {
+                         @RequestParam(required = false,value = "currentPage",defaultValue = "1") Integer currentPage,
+                         @RequestParam(required = false,value = "pageSize",defaultValue = "5") Integer pageSize) throws Exception {
         PageBean<User> page = userService.findByPage(keyword, currentPage, pageSize);
         return Result.success(page.getItems(),page.getTotalNum());
     }
@@ -43,7 +48,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/add")
+    @ApiOperation(value="新增用户")
+    @PostMapping(value = "/add")
     public Result addUser(@RequestBody User user) throws Exception {
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
@@ -57,7 +63,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/update")
+    @ApiOperation(value="修改用户")
+    @PostMapping(value = "/update")
     public Result updateUser(@RequestBody User user) throws Exception {
         user.setUpdateTime(new Date());
         Integer count = userService.updateUser(user);
@@ -70,7 +77,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/delete")
+    @ApiOperation(value="通过主键ID删除用户")
+    @GetMapping(value = "/delete")
     public Result deleteUser(Long id) throws Exception {
         Integer count = userService.deleteUser(id);
         return getResult(count);
@@ -82,7 +90,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/batchDelete")
+    @ApiOperation(value="通过主键ID批量删除用户")
+    @GetMapping(value = "/batchDelete")
     public Result batchDelete(String ids) throws Exception {
        Integer count = userService.batchDelete(ids);
         return getResult(count);
@@ -94,7 +103,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/findUserById")
+    @ApiOperation(value="根据用户主键ID查询用户信息")
+    @GetMapping(value = "/findUserById")
     public Result findUserById(Long id) throws Exception {
         User user = userService.findUserById(id);
         return getResult(user);
@@ -106,7 +116,8 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/findUserByName")
+    @ApiOperation(value="根据用户名字模糊查询用户信息")
+    @GetMapping(value = "/findUserByName")
     public Result findUserByName(String userName) throws Exception {
         List<User> users = userService.findUserByName(userName);
         return getResult(users);
@@ -118,13 +129,15 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/findUserByAge")
+    @ApiOperation(value="根据用户年龄查询用户信息")
+    @GetMapping(value = "/findUserByAge")
     public Result findUserByName(Byte age) throws Exception {
         List<User> users = userService.findUserByAge(age);
         return getResult(users);
     }
 
-    @RequestMapping(value = "/upload")
+    @ApiOperation(value="文件上传")
+    @PostMapping(value = "/upload")
     public Map<String, Object> upload(@RequestParam("file") MultipartFile file,HttpServletRequest request){
         if (null != file) {
             String fileName = file.getOriginalFilename();// 文件原名称
@@ -150,16 +163,18 @@ public class UserController extends BaseController{
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/register")
+    @ApiOperation(value="用户注册")
+    @PostMapping(value = "/register")
     public Result register(@RequestBody RegisterUser registerUser) throws Exception {
 
         return getResult(1);
     }
 
-    @RequestMapping(value = "/test")
-    public String test(){
+    @ApiOperation(value="测试接口")
+    @GetMapping(value = "/test")
+    public String test() throws Exception{
 
-        return null;
+        return "this member server";
     }
 
 }

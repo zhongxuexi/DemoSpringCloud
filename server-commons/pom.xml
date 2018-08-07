@@ -2,12 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.jess.commons</groupId>
 	<artifactId>server-commons</artifactId>
 	<packaging>jar</packaging>
 
 	<name>server-commons</name>
-	<description>公共基础服务</description>
+	<description>公共基础模块组件</description>
 
 	<parent>
 		<groupId>com.jess</groupId>
@@ -16,6 +17,11 @@
 	</parent>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.jess.commons</groupId>
+			<artifactId>server-common-fegin</artifactId>
+			<version>${server-commons.version}</version>
+		</dependency>
 		<!--引入数据库连接驱动-->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -55,6 +61,25 @@
 			<version>1.2.3</version>
 		</dependency>
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
@@ -64,6 +89,11 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.0.6.RELEASE</version>
 		</dependency>
 	</dependencies>
 
@@ -106,8 +136,6 @@
 					<overwrite>true</overwrite>
 					<!--配置文件的位置-->
 					<configurationFile>../server-commons/src/main/resources/generatorConfig.xml</configurationFile>
-					<verbose>true</verbose>
-					<overwrite>true</overwrite>
 				</configuration>
 			</plugin>
 		</plugins>

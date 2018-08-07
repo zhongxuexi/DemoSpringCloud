@@ -76,7 +76,7 @@
         <!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from dual" identity="false" type="pre"/> -->
 
         <!-- 要生成哪些表：tableName：数据库表名，domainObjectName：生成文件名 ，schema：数据源-->
-        <table tableName="t_user" domainObjectName="User" enableCountByExample="false"
+        <table tableName="${table.tableName}" domainObjectName="${table.domainObjectName}" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>

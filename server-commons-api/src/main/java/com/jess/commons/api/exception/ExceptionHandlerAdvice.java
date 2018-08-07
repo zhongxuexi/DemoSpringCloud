@@ -21,11 +21,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
-	private static final String CLIENT_EXCEPTION = "com.netflix.client.ClientException: Load balancer does not have available server for client: "; // 短信服务异常
-
-	private ExceptionHandlerAdvice() {
-	}
-
 	private SystemResponse handleFeignException(FeignException e) {
 		String msg = e.getMessage();
 		SystemResponse rs = checkCall(msg);

@@ -1,7 +1,7 @@
 package com.jess.service.impl;
 import com.google.common.collect.Maps;
+import com.jess.commons.util.DateUtil;
 import com.jess.service.FileUploadService;
-import com.jess.util.DateUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +22,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     public Map<String, Object> upload(MultipartFile file) {
         // 自定义的文件名称
         String trueFileName = file.getOriginalFilename();// 文件原名称;
-        String dbName = "/"+DateUtil.getDays()+"/"+trueFileName;
+        String dbName = "/"+ DateUtil.getDays()+"/"+trueFileName;
         try {
             File localFile = new File(path,dbName);
             if (!localFile.getParentFile().exists()) { //如果不存在 则创建
@@ -34,12 +34,6 @@ public class FileUploadServiceImpl implements FileUploadService {
             }
             file.transferTo(localFile);// 转存文件
             //数据库存储的相对路径
-//            WebApplicationContext webApplicationContext = (WebApplicationContext) SpringContextUtils.applicationContext;
-//            ServletContext servletContext = webApplicationContext.getServletContext();
-//            String projectPath = servletContext.getContextPath();
-//            String contextpath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+projectPath;
-//            String jdbcurl = contextpath + "/upload/"+trueFileName;
-//            System.out.println("相对路径:"+jdbcurl);
             Map<String, Object> map = Maps.newHashMap();
             map.put("fileName",trueFileName);
             map.put("path",dbName);

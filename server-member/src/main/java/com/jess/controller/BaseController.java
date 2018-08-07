@@ -1,11 +1,9 @@
 package com.jess.controller;
 
-import com.google.common.collect.Maps;
-import com.jess.util.CodeMsg;
-import com.jess.util.Result;
+import com.jess.commons.util.CodeMsg;
+import com.jess.commons.util.Result;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 基础 Controller

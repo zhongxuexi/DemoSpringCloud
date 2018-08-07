@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public Integer deleteUser(Long id) throws Exception {
+        int a=5/0;
         User user = new User();
         user.setId(id);
         user.setDeleteState("1");

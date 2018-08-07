@@ -1,6 +1,5 @@
 package com.jess.dao.extend;
 
-import com.jess.commons.mapper.MyMapper;
 import com.jess.entity.User;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,31 +1,28 @@
 package com.jess.controller;
 
-import com.jess.service.OrderMemberService;
+import com.jess.commons.service.MemberServiceFegin;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * Created by zhongxuexi on 2018/6/5.
  */
 @Controller
-@RequestMapping(value = "/jess")
+@RequestMapping(value = "/order")
+@Api(value="订单管理")
 public class OrderController {
     @Autowired
-    private OrderMemberService orderMemberService;
+    private MemberServiceFegin memberServiceFegin;
 
-    @RequestMapping(value = "/index")
-    public String getOrderServerApi(){
-        return "index";//地址指向index.html
-    }
-
-    @RequestMapping(value = "/getAllMembers")
-    public List<Object> getAllMembers(){
-        System.out.println("订单服务开始调用会员服务");
-        return orderMemberService.getOrderMembers();
+    @ApiOperation(value="测试Feign远程调用", notes="feignTest")
+    @GetMapping(value = "/feignTest")
+    public String feignTest() throws Exception {
+        System.out.println("测试feign远程调用");
+        return  memberServiceFegin.test();
     }
 
 }

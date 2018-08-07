@@ -6,7 +6,6 @@ import com.jess.dao.msg.UserMapper;
 import com.jess.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,7 +14,6 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MapperScan("com.jess.dao")
 public class ServerMemberApplicationTests {
 	@Autowired
 	private RedisService redisService;
@@ -37,7 +35,10 @@ public class ServerMemberApplicationTests {
 	}
 	@Test
 	public void testMapper(){
-		List<User> users = userMapper.selectAll();
+		for(User user:userMapper.selectAll()){
+			System.out.println(user.toString());
+		}
+
 	}
 
 }
