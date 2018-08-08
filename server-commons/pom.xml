@@ -22,78 +22,15 @@
 			<artifactId>server-common-fegin</artifactId>
 			<version>${server-commons.version}</version>
 		</dependency>
-		<!--引入数据库连接驱动-->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
-		<!--引入mybatis-->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-		<!--alibaba连接池 druid-->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.9</version>
-		</dependency>
-		<!--引入 mybatis-generator-core 才能使用逆向工程-->
-		<dependency>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator-core</artifactId>
-			<version>${mybatis.generator.version}</version>
-			<scope>test</scope>
-			<optional>true</optional>
-		</dependency>
-		<!--mapper 引入可以使用通用mapper-->
-		<dependency>
-			<groupId>tk.mybatis</groupId>
-			<artifactId>mapper-spring-boot-starter</artifactId>
-			<version>1.2.4</version>
-		</dependency>
-		<!--mybatis分页插件-->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.47</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<!-- java ee -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>5.0.6.RELEASE</version>
+        </dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>5.0.6.RELEASE</version>
+			<version>8.0</version>
 		</dependency>
 	</dependencies>
 
@@ -104,38 +41,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<classifier>exe</classifier>
-				</configuration>
-			</plugin>
-			<!-- mybatis 逆向工程maven插件 -->
-			<plugin>
-				<groupId>org.mybatis.generator</groupId>
-				<artifactId>mybatis-generator-maven-plugin</artifactId>
-				<version>${mybatis.generator.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>${mysql.version}</version>
-					</dependency>
-					<!--MyBatis 及 插件依赖 -->
-					<dependency>
-						<groupId>org.mybatis.spring.boot</groupId>
-						<artifactId>mybatis-spring-boot-starter</artifactId>
-						<version>1.3.1</version>
-					</dependency>
-					<dependency>
-						<groupId>tk.mybatis</groupId>
-						<artifactId>mapper</artifactId>
-						<version>${mapper.version}</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<!-- 允许移动生成的文件 -->
-					<verbose>true</verbose>
-					<!-- 是否覆盖 -->
-					<overwrite>true</overwrite>
-					<!--配置文件的位置-->
-					<configurationFile>../server-commons/src/main/resources/generatorConfig.xml</configurationFile>
 				</configuration>
 			</plugin>
 		</plugins>

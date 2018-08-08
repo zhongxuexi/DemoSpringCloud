@@ -18,7 +18,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.jess.commons.mapper.MyMapper"/>
+            <property name="mappers" value="com.jess.commons.api.mapper.MyMapper"/>
         </plugin>
 
         <!-- optional，旨在创建class时，对注释进行控制 -->

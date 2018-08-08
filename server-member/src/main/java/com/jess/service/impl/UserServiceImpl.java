@@ -1,16 +1,15 @@
 package com.jess.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.jess.commons.util.PageBean;
+import com.jess.dao.UserMapper;
 import com.jess.dao.extend.UserExtendMapper;
-import com.jess.dao.msg.UserMapper;
 import com.jess.entity.User;
 import com.jess.service.UserService;
-import com.jess.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
-
 import java.util.Date;
 import java.util.List;
 

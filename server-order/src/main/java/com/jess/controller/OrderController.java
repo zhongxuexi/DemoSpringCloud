@@ -19,8 +19,8 @@ public class OrderController {
     private MemberServiceFegin memberServiceFegin;
 
     @ApiOperation(value="测试Feign远程调用", notes="feignTest")
-    @GetMapping(value = "/feignTest")
-    public String feignTest() throws Exception {
+    @GetMapping(value = "/test")
+    public String test() throws Exception {
         System.out.println("测试feign远程调用");
         return  memberServiceFegin.test();
     }

@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableTransactionManagement	// 启注解事务管理，等同于xml配置方式的 <tx:annotation-driven />
 @MapperScan(basePackages = {"com.jess.dao"})
-//@ComponentScan(basePackages = {"com.jess"})
+@ComponentScan(basePackages = {"com.jess"})
 @EnableFeignClients(basePackages = {"com.jess.commons"})
 public class ServerMemberApplication {
 	public static void main(String[] args) {

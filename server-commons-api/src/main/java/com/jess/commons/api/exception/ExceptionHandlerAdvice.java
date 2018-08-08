@@ -1,9 +1,8 @@
 package com.jess.commons.api.exception;
 
-import com.jess.commons.api.util.Exception4CallUtil;
+import com.jess.commons.api.util.CodeMsg;
 import com.jess.commons.api.util.LogUtil;
-import com.jess.commons.util.ResultUtil;
-import com.jess.commons.web.SystemResponse;
+import com.jess.commons.api.util.Result;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
@@ -21,13 +20,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
-	private SystemResponse handleFeignException(FeignException e) {
+	private Result handleFeignException(FeignException e) {
 		String msg = e.getMessage();
-		SystemResponse rs = checkCall(msg);
+		Result rs = checkCall(msg);
 		if (rs != null) {
 			return rs;
 		}
-		return ResultUtil.fail("sys_common_1013", "远程调用失败");
+		return Result.error(CodeMsg.SERVER_EXCEPTION, "远程调用失败");
 	}
 
 	/** 
@@ -35,29 +34,29 @@ public class ExceptionHandlerAdvice {
 	 * @Description  
 	 * @param msg 
 	 */
-	public SystemResponse checkCall(String msg) {
-		SystemResponse systemResponse = null;
+	public Result checkCall(String msg) {
+		Result result = null;
 
 		if (msg.contains("MsgFeign#")) {
-			systemResponse = Exception4CallUtil.responseTcloudMsg();
+
 		} else if (msg.contains("DevicesConnectorFeign#")) {
-			systemResponse = Exception4CallUtil.responseTcloudDevicesConnector();
+
 		} else if (msg.contains("MdsFeign#")) {
-			systemResponse = Exception4CallUtil.responseTcloudMds();
+
 		}
-		return systemResponse;
+		return result;
 	}
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(HystrixRuntimeException.class)
 	@ResponseBody
-	public SystemResponse handleHystrixRuntimeException(HystrixRuntimeException e) {
+	public Result handleHystrixRuntimeException(HystrixRuntimeException e) {
 		String msg = e.getMessage();
-		SystemResponse rs = checkCall(msg);
+		Result rs = checkCall(msg);
 		if (rs != null) {
 			return rs;
 		}
-		return ResultUtil.NO;
+		return Result.error(CodeMsg.NOT_FIND_DATA);
 	}
 
 	/**
@@ -68,23 +67,23 @@ public class ExceptionHandlerAdvice {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 500
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
-	public SystemResponse handleOtherException(Exception e) {
+	public Result handleOtherException(Exception e) {
 		LogUtil.logger.error("服务出现异常1111111", e);
 		if (e instanceof org.springframework.web.bind.MethodArgumentNotValidException) {
 			return null;
 		} else if (e instanceof MissingServletRequestParameterException) {
-			return ResultUtil.fail("sys_common_1007", e.getMessage().replace("Required ", "必要的")
+			return Result.error(CodeMsg.SERVER_EXCEPTION, e.getMessage().replace("Required ", "必要的")
 					.replace(" parameter ", "类型的参数").replace(" is not present", "不能为空"));
 		} else if (e instanceof FeignException) {
 			return handleFeignException((FeignException) e);
 		} else if (e instanceof org.springframework.web.method.annotation.MethodArgumentTypeMismatchException) {
 			if (e.getMessage().contains(
 					"Failed to convert value of type 'java.lang.String' to required type 'java.util.Date';")) {
-				return ResultUtil.fail("sys_common_1007", "日期不正确");
+				return Result.error(CodeMsg.SERVER_EXCEPTION, "日期不正确");
 			}
-			return ResultUtil.fail("sys_common_1006", "系统异常");
+			return Result.error(CodeMsg.SERVER_EXCEPTION, "系统异常");
 		} else {
-			return ResultUtil.fail("sys_common_1006", "系统异常");
+			return Result.error(CodeMsg.SERVER_EXCEPTION, "未知的系统异常");
 		}
 	}
 

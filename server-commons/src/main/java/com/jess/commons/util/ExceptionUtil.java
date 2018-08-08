@@ -4,10 +4,10 @@
 * Created by zhongxuexi
 * Copyright (C) 2017 SAIC VOLKSWAGEN, All rights reserved.
 */
-package com.jess.commons.api.util;
+package com.jess.commons.util;
 
-import com.jess.commons.api.constants.Const;
-import com.jess.commons.api.exception.AppException;
+import com.jess.commons.constants.Const;
+import com.jess.commons.exception.AppException;
 
 /**
  * <p>ClassName: ExceptionUtil</p>

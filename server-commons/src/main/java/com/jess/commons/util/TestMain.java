@@ -1,4 +1,4 @@
-package com.jess.commons.web;
+package com.jess.commons.util;
 
 /**
  * Created by zhongxuexi on 2018/8/6.

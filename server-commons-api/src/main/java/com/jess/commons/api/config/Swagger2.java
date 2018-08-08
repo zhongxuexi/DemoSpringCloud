@@ -2,6 +2,8 @@ package com.jess.commons.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,11 +28,16 @@ public class Swagger2 {
                 .build();
     }
 
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/**").addResourceLocations("classpath:/META-INF/resources/").setCachePeriod(0);
+//    }
+
     private ApiInfo apiInfo() {// 创建API的基本信息，这些信息会在Swagger UI中进行显示
         return new ApiInfoBuilder()
                 .title("Spring cloud项目中使用Swagger2构建RESTful APIs")// API 标题
                 .description("jess.zhong提供的RESTful APIs")// API描述
-                .contact("zhongxuexi")// 联系人
+                .contact("钟学曦")// 联系人
                 .version("1.0")// 版本号
                 .build();
     }

@@ -9,9 +9,10 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
-//(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
-//@ComponentScan(basePackages = {"com.jess"})
+@ComponentScan(basePackages = {"com.jess"})
 @EnableFeignClients(basePackages = {"com.jess.commons"})
 public class ServerOrderApplication {
 

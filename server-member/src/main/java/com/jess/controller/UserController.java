@@ -1,10 +1,10 @@
 package com.jess.controller;
-import com.jess.commons.util.Result;
+import com.jess.commons.api.util.Result;
+import com.jess.commons.util.PageBean;
 import com.jess.entity.RegisterUser;
 import com.jess.entity.User;
 import com.jess.service.FileUploadService;
 import com.jess.service.UserService;
-import com.jess.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

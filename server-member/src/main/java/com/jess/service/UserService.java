@@ -1,7 +1,7 @@
 package com.jess.service;
 
+import com.jess.commons.util.PageBean;
 import com.jess.entity.User;
-import com.jess.util.PageBean;
 
 import java.util.List;
 

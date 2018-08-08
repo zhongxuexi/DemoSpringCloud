@@ -4,16 +4,19 @@
 * Created by 胡锐锋
 * Copyright (C) 2017 SAIC VOLKSWAGEN, All rights reserved.
 */
-package com.jess.commons.api.util;
+package com.jess.commons.util;
+
+import java.util.function.Supplier;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import javax.servlet.http.HttpServletRequest;
-import java.util.function.Supplier;
-import static com.jess.commons.api.constants.Const.*;
+
+import static com.jess.commons.constants.Const.*;
 
 /**
  * 

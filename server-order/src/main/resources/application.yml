@@ -3,7 +3,7 @@ eureka:
     service-url:
       defaultZone: http://server1:8101/eureka/
 server:
-  port: 9101
+  port: 9011
 spring:
   application:
     name: server-order

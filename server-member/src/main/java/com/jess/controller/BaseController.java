@@ -1,7 +1,7 @@
 package com.jess.controller;
 
-import com.jess.commons.util.CodeMsg;
-import com.jess.commons.util.Result;
+import com.jess.commons.api.util.CodeMsg;
+import com.jess.commons.api.util.Result;
 
 import java.util.List;
 

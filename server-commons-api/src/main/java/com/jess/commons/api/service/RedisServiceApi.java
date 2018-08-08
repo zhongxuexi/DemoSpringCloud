@@ -3,7 +3,7 @@ package com.jess.commons.api.service;
 import com.jess.commons.api.util.ExceptionUtil;
 import com.jess.commons.api.util.JSONUtil;
 import com.jess.commons.api.util.LogUtil;
-import com.jess.commons.util.ReflectionUtils;
+import com.jess.commons.api.util.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -14,8 +14,6 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -27,9 +25,9 @@ import java.util.stream.Collectors;
  * <p>Date: 2017年11月18日</p>
  */
 @Service
-public class RedisService {
+public class RedisServiceApi {
 
-	public RedisService() {
+	public RedisServiceApi() {
 		super();
 	}
 

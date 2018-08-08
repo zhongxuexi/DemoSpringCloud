@@ -1,6 +1,7 @@
-package com.jess.commons.mapper;
+package com.jess.commons.api.mapper;
 
 import tk.mybatis.mapper.common.Mapper;
+
 import tk.mybatis.mapper.common.MySqlMapper;
 
 /**

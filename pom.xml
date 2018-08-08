@@ -75,6 +75,25 @@
 			<version>1.18.2</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
 		<!-- swagger2 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -85,6 +104,11 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.13</version>
 		</dependency>
 	</dependencies>
 
@@ -99,6 +123,42 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<!-- 配置远程仓库 -->
+	<!-- 华为Maven库 -->
+	<repositories>
+		<repository>
+			<id>huaweicloud</id>
+			<url>https://repo.huaweicloud.com/repository/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</repository>
+		<!--阿里仓库-->
+		<repository>
+			<id>aliyun-repos</id>
+			<name>aliyun Releases</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<!--部署构件至远程仓库-->
+	<!--<distributionManagement>-->
+		<!--<repository>-->
+			<!--<id>releases</id>-->
+			<!--<name>public</name>-->
+			<!--<url>http://59.50.95.66:8081/nexus/content/repositories/releases</url>-->
+		<!--</repository>-->
+		<!--<snapshotRepository>-->
+			<!--<id>snapshots</id>-->
+			<!--<name>Snapshots</name>-->
+			<!--<url>http://59.50.95.66:8081/nexus/content/repositories/snapshots</url>-->
+		<!--</snapshotRepository>-->
+	<!--</distributionManagement>-->
 
 	<build>
 		<plugins>

@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by zhongxuexi on 2018/6/6.
@@ -14,6 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface MemberServiceFegin {
 
     @ApiOperation(value="测试接口")
-    @GetMapping(value = "/test")
-    public String test() throws Exception;
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    String test() throws Exception;
 }
