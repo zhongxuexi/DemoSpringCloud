@@ -6,7 +6,6 @@
 	<groupId>com.jess.commons</groupId>
 	<artifactId>server-commons</artifactId>
 	<packaging>jar</packaging>
-
 	<name>server-commons</name>
 	<description>公共基础模块组件</description>
 

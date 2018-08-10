@@ -24,6 +24,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zuul</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.jess.commons</groupId>
+			<artifactId>server-commons</artifactId>
+			<version>${server-commons.version}</version>
+		</dependency>
 	</dependencies>
 
 </project>

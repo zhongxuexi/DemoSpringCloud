@@ -10,8 +10,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
+@EnableSwagger2
+@MapperScan(basePackages = {"com.jess.dao"})
 @ComponentScan(basePackages = {"com.jess"})
 @EnableFeignClients(basePackages = {"com.jess.commons"})
 public class ServerOrderApplication {

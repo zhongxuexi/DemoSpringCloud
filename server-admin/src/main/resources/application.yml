@@ -1,0 +1,32 @@
+server:
+    port: 8200 #启动端口
+spring:
+  application:
+      name: server_admin
+  mail:
+    host: smtp.aliyun.com
+    username: jess.zhong@aliyun.com
+    password: Zxx@!@686988
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  boot:
+    admin:
+      notify:
+        mail:
+          from: jess.zhong@aliyun.com
+          to: jess.zhong@aliyun.com
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://server1:8101/eureka/
+management:
+  security:
+    enabled: false

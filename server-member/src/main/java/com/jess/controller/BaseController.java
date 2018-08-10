@@ -2,6 +2,8 @@ package com.jess.controller;
 
 import com.jess.commons.api.util.CodeMsg;
 import com.jess.commons.api.util.Result;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * 基础 Controller
  * Created by zhongxuexi on 2018/7/15.
  */
+@RestController
+@CrossOrigin
 public abstract class BaseController<T> {
     /**
      * 增删改获取数据结果

@@ -68,7 +68,7 @@ public class ExceptionHandlerAdvice {
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public Result handleOtherException(Exception e) {
-		LogUtil.logger.error("服务出现异常1111111", e);
+		LogUtil.logger.error("服务出现异常", e);
 		if (e instanceof org.springframework.web.bind.MethodArgumentNotValidException) {
 			return null;
 		} else if (e instanceof MissingServletRequestParameterException) {

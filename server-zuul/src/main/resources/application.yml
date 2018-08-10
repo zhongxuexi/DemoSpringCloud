@@ -16,12 +16,24 @@ eureka:
     service-url:
       defaultZone: http://server1:8101/eureka/
 zuul:
+  prefix: /jess
  # 禁止服务自动添加
   ignoredServices: '*'
   routes:
-    api-a:
-      path: /api-member/**
-      serviceId: server-member
-    api-b:
-      path: /api-order/**
-      serviceId: server-order
+    server-member:
+          path: /member/**
+    server-order:
+      path: /order/**
+  max:
+    host:
+      connections: 200
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000

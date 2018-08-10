@@ -75,3 +75,6 @@ logging:
       org:
         springframework:
           web: DEBUG
+management:
+  security:
+    enabled: false

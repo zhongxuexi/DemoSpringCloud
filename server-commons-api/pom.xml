@@ -6,7 +6,6 @@
 	<groupId>com.jess.commons</groupId>
 	<artifactId>server-commons-api</artifactId>
 	<packaging>jar</packaging>
-
 	<name>server-commons-api</name>
 	<description>公共api组件</description>
 
@@ -78,7 +77,6 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 		</dependency>
-
     </dependencies>
 
 	<build>

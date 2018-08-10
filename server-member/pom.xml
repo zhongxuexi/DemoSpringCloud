@@ -5,7 +5,6 @@
 
 	<artifactId>server-member</artifactId>
 	<packaging>jar</packaging>
-
 	<name>server-member</name>
 	<description>会员微服务</description>
 

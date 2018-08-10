@@ -6,7 +6,6 @@
 	<groupId>com.jess.commons</groupId>
 	<artifactId>server-common-fegin</artifactId>
 	<packaging>jar</packaging>
-
 	<name>server-common-fegin</name>
 	<description>fegin远程调用组件</description>
 
@@ -17,10 +16,6 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
 		<!-- Ribbon begin-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -35,5 +30,17 @@
 			<artifactId>spring-cloud-starter-hystrix</artifactId>
 		</dependency>
     </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<classifier>exe</classifier>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
