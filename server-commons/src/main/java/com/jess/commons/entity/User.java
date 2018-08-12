@@ -1,4 +1,4 @@
-package com.jess.entity;
+package com.jess.commons.entity;
 
 import java.util.Date;
 import javax.persistence.*;
@@ -14,14 +14,12 @@ public class User {
     /**
      * 真实姓名
      */
-    @Column(name = "real_name")
-    private String realName;
+    private String realname;
 
     /**
      * 登陆名
      */
-    @Column(name = "user_name")
-    private String userName;
+    private String username;
 
     private String path;
 
@@ -48,8 +46,7 @@ public class User {
     /**
      * 籍贯
      */
-    @Column(name = "native_place")
-    private String nativePlace;
+    private String nativeplace;
 
     /**
      * 手机号码
@@ -84,16 +81,16 @@ public class User {
     @Column(name = "delete_state")
     private String deleteState;
 
-    public User(Long id, String realName, String userName, String path, String password, String sex, Byte age, String education, String nativePlace, String phone, String email, String address, Date createTime, Date updateTime, String deleteState) {
+    public User(Long id, String realname, String username, String path, String password, String sex, Byte age, String education, String nativeplace, String phone, String email, String address, Date createTime, Date updateTime, String deleteState) {
         this.id = id;
-        this.realName = realName;
-        this.userName = userName;
+        this.realname = realname;
+        this.username = username;
         this.path = path;
         this.password = password;
         this.sex = sex;
         this.age = age;
         this.education = education;
-        this.nativePlace = nativePlace;
+        this.nativeplace = nativeplace;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -127,37 +124,37 @@ public class User {
     /**
      * 获取真实姓名
      *
-     * @return real_name - 真实姓名
+     * @return realname - 真实姓名
      */
-    public String getRealName() {
-        return realName;
+    public String getRealname() {
+        return realname;
     }
 
     /**
      * 设置真实姓名
      *
-     * @param realName 真实姓名
+     * @param realname 真实姓名
      */
-    public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
+    public void setRealname(String realname) {
+        this.realname = realname == null ? null : realname.trim();
     }
 
     /**
      * 获取登陆名
      *
-     * @return user_name - 登陆名
+     * @return username - 登陆名
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * 设置登陆名
      *
-     * @param userName 登陆名
+     * @param username 登陆名
      */
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     /**
@@ -249,19 +246,19 @@ public class User {
     /**
      * 获取籍贯
      *
-     * @return native_place - 籍贯
+     * @return nativeplace - 籍贯
      */
-    public String getNativePlace() {
-        return nativePlace;
+    public String getNativeplace() {
+        return nativeplace;
     }
 
     /**
      * 设置籍贯
      *
-     * @param nativePlace 籍贯
+     * @param nativeplace 籍贯
      */
-    public void setNativePlace(String nativePlace) {
-        this.nativePlace = nativePlace == null ? null : nativePlace.trim();
+    public void setNativeplace(String nativeplace) {
+        this.nativeplace = nativeplace == null ? null : nativeplace.trim();
     }
 
     /**

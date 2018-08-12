@@ -16,6 +16,11 @@
 	</parent>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.jess.commons</groupId>
+			<artifactId>server-commons</artifactId>
+			<version>${server-commons.version}</version>
+		</dependency>
 		<!--引入数据库连接驱动-->
 		<dependency>
 			<groupId>mysql</groupId>

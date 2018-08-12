@@ -1,5 +1,7 @@
 package com.jess.commons.api.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Created by zhongxuexi on 2018/7/15.
  */
@@ -57,7 +59,13 @@ public class Result<T> {
      * @return
      */
     public static <T> Result<T> error(CodeMsg cm,String msg){
-        cm.setMsg(cm.getMsg()+"--"+msg);
+
+        if(StringUtils.contains(cm.getMsg(),":")){
+            String str = cm.getMsg().split(":")[0];
+            cm.setMsg(str+":"+msg);
+        }else {
+            cm.setMsg(cm.getMsg()+":"+msg);
+        }
         return new Result<T>(cm);
     }
     public T getData() {

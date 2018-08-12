@@ -26,14 +26,22 @@ zuul:
       path: /order/**
   max:
     host:
-      connections: 200
+      connections: 10000
+  #超时设置
   host:
-    socket-timeout-millis: 60000
-    connect-timeout-millis: 60000
+    socket-timeout-millis: 1000000
+    connect-timeout-millis: 1000000
+#熔断器启用
+feign:
+  hystrix:
+    enabled: true
 hystrix:
   command:
     default:
       execution:
+        timeout:
+          enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 10000
+            timeoutInMilliseconds: 1000000
+

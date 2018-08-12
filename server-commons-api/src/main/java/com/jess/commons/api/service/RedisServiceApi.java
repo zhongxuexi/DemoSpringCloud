@@ -1,9 +1,9 @@
 package com.jess.commons.api.service;
 
-import com.jess.commons.api.util.ExceptionUtil;
-import com.jess.commons.api.util.JSONUtil;
-import com.jess.commons.api.util.LogUtil;
-import com.jess.commons.api.util.ReflectionUtils;
+import com.jess.commons.util.ExceptionUtil;
+import com.jess.commons.util.JSONUtil;
+import com.jess.commons.util.LogUtil;
+import com.jess.commons.util.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

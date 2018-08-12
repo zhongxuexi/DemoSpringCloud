@@ -3,20 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jess.dao.extend.UserExtendMapper">
-    <resultMap id="BaseResultMap" type="com.jess.entity.User" >
+    <resultMap id="BaseResultMap" type="com.jess.commons.entity.User" >
         <!--
           WARNING - @mbg.generated
         -->
         <constructor >
             <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
-            <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="realname" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="sex" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="age" jdbcType="TINYINT" javaType="java.lang.Byte" />
             <arg column="education" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="native_place" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="nativeplace" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -29,10 +29,10 @@
         <where>
             1=1 and a.delete_state = '0'
             <if test="keyword!=null and keyword!=''">
-                and (a.real_name like CONCAT('%',#{keyword},'%') or
-                a.user_name like CONCAT('%',#{keyword},'%') or
+                and (a.realname like CONCAT('%',#{keyword},'%') or
+                a.username like CONCAT('%',#{keyword},'%') or
                 a.education like CONCAT('%',#{keyword},'%') or
-                a.native_place like CONCAT('%',#{keyword},'%') or
+                a.nativeplace like CONCAT('%',#{keyword},'%') or
                 a.address like CONCAT('%',#{keyword},'%')
                 )
             </if>

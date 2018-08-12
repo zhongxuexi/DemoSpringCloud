@@ -1,8 +1,8 @@
 package com.jess.commons.api.exception;
 
 import com.jess.commons.api.util.CodeMsg;
-import com.jess.commons.api.util.LogUtil;
 import com.jess.commons.api.util.Result;
+import com.jess.commons.util.LogUtil;
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 import feign.FeignException;
 import org.springframework.http.HttpStatus;
@@ -82,6 +82,8 @@ public class ExceptionHandlerAdvice {
 				return Result.error(CodeMsg.SERVER_EXCEPTION, "日期不正确");
 			}
 			return Result.error(CodeMsg.SERVER_EXCEPTION, "系统异常");
+		}else if(e instanceof FieldException){
+			return Result.error(CodeMsg.SERVER_EXCEPTION, e.getMessage());
 		} else {
 			return Result.error(CodeMsg.SERVER_EXCEPTION, "未知的系统异常");
 		}

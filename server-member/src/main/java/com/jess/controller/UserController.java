@@ -1,8 +1,7 @@
 package com.jess.controller;
 import com.jess.commons.api.util.Result;
+import com.jess.commons.entity.User;
 import com.jess.commons.util.PageBean;
-import com.jess.entity.RegisterUser;
-import com.jess.entity.User;
 import com.jess.service.FileUploadService;
 import com.jess.service.UserService;
 import io.swagger.annotations.Api;
@@ -20,6 +19,7 @@ import java.util.*;
 @RestController
 @CrossOrigin
 @Api(value="用户管理")
+@RequestMapping("/user")
 public class UserController extends BaseController{
     @Autowired
     private UserService userService;
@@ -105,9 +105,10 @@ public class UserController extends BaseController{
      */
     @ApiOperation(value="根据用户主键ID查询用户信息")
     @GetMapping(value = "/findUserById")
-    public Result findUserById(Long id) throws Exception {
-        User user = userService.findUserById(id);
-        return getResult(user);
+    public Result findUserById(@RequestParam(value = "id")Long id,
+                               @RequestParam(required = false,value = "field",defaultValue = "")String field) throws Exception {
+        Map<String,Object> map = userService.findUserById(id,field);
+        return getResult(map);
     }
 
     /**
@@ -118,8 +119,9 @@ public class UserController extends BaseController{
      */
     @ApiOperation(value="根据用户名字模糊查询用户信息")
     @GetMapping(value = "/findUserByName")
-    public Result findUserByName(String userName) throws Exception {
-        List<User> users = userService.findUserByName(userName);
+    public Result findUserByName(@RequestParam(required = false,value = "userName",defaultValue = "")String userName,
+                                 @RequestParam(required = false,value = "field",defaultValue = "")String field) throws Exception {
+        List<Map<String,Object>> users = userService.findUserByName(userName,field);
         return getResult(users);
     }
 
@@ -159,13 +161,13 @@ public class UserController extends BaseController{
 
     /**
      * 用户注册
-     * @param registerUser
+     * @param
      * @return
      * @throws Exception
      */
     @ApiOperation(value="用户注册")
     @PostMapping(value = "/register")
-    public Result register(@RequestBody RegisterUser registerUser) throws Exception {
+    public Result register() throws Exception {
 
         return getResult(1);
     }

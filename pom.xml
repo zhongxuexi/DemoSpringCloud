@@ -7,6 +7,8 @@
 	<artifactId>DemoSpringCloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>DemoSpringCloud</name>
+	<description>父项目</description>
 	<!--引入的子模块-->
 	<modules>
 		<module>server-eureka</module>
@@ -18,9 +20,6 @@
 		<module>server-member</module>
 		<module>server-order</module>
 	</modules>
-
-	<name>DemoSpringCloud</name>
-	<description>父项目</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

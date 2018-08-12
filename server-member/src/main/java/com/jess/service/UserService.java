@@ -1,9 +1,10 @@
 package com.jess.service;
 
 import com.jess.commons.util.PageBean;
-import com.jess.entity.User;
+import com.jess.commons.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhongxuexi on 2018/6/7.
@@ -57,7 +58,7 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    User findUserById(Long id) throws Exception;
+    Map<String,Object> findUserById(Long id,String field) throws Exception;
 
     /**
      * 根据用户名字模糊查询用户信息
@@ -65,7 +66,7 @@ public interface UserService {
      * @return
      * @throws Exception
      */
-    List<User> findUserByName(String userName) throws Exception;
+    List<Map<String,Object>> findUserByName(String userName,String field) throws Exception;
 
     /**
      * 根据用户年龄查询用户信息

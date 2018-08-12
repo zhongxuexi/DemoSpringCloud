@@ -3,7 +3,7 @@ package com.jess;
 import com.google.common.collect.Lists;
 import com.jess.commons.api.service.RedisServiceApi;
 import com.jess.dao.UserMapper;
-import com.jess.entity.User;
+import com.jess.commons.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ServerMemberApplicationTests {
 			user.setId((long) i);
 			user.setAge((byte) 45);
 			user.setEducation("本科");
-			user.setRealName("钟学曦"+i);
+			user.setRealname("钟学曦"+i);
 			list.add(user);
 		}
 		//redisService.set("userList",list);
