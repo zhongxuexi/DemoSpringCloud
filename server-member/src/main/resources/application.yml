@@ -1,7 +1,7 @@
 web:
 ##本地环境
-#  upload-path: E:\workSpaces\work_space_4\upload_file\
-#  upload-url: http://localhost:9001/file
+  upload-path: E:\workSpaces\work_space_4\upload_file\
+  upload-url: http://localhost:9001/file
 #linux环境
 #  upload-path: /home/springCloud/upload_file/
 #  upload-url: http://192.168.0.188:8080/file
@@ -18,6 +18,13 @@ spring:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
+#  rabbitmq:
+#      host: 127.0.0.1
+#      port: 5672
+##      username: jess.zhong
+##      password: Zxx@!@686988
+#      username: guest
+#      password: guest
   datasource:
       name: test
       url: jdbc:mysql://127.0.0.1:3306/work_space_4
@@ -41,7 +48,7 @@ spring:
       maxOpenPreparedStatements: 20
 #mybatis&&通用Mapper
 mybatis:
-  type-aliases-package: com.jsee.entity
+  type-aliases-package: com.jess.entity
   mapper-locations: classpath:mapper/**/**.xml
 
 #分页

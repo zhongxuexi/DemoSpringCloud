@@ -14,9 +14,8 @@
 		<module>server-eureka</module>
 		<module>server-zuul</module>
 		<module>server-admin</module>
-		<module>server-commons</module>
-		<module>server-commons-api</module>
-		<module>server-commons-fegin</module>
+		<module>component-common</module>
+		<module>component-fegin</module>
 		<module>server-member</module>
 		<module>server-order</module>
 	</modules>
@@ -72,7 +71,7 @@
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
 		</dependency>
-		<!--rabbitmq-->
+		<!--rabbitMQ-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>

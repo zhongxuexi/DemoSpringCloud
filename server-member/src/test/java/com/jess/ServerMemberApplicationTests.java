@@ -1,9 +1,9 @@
 package com.jess;
 
 import com.google.common.collect.Lists;
-import com.jess.commons.api.service.RedisServiceApi;
+import com.jess.common.component.redis.RedisClient;
 import com.jess.dao.UserMapper;
-import com.jess.commons.entity.User;
+import com.jess.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,10 @@ import java.util.List;
 @SpringBootTest
 public class ServerMemberApplicationTests {
 	@Autowired
-	private RedisServiceApi redisServiceApi;
+	private RedisClient redisClient;
 	@Autowired
 	private UserMapper userMapper;
+
 	@Test
 	public void testRedis() {
 		List<User> list = Lists.newArrayList();
@@ -31,14 +32,12 @@ public class ServerMemberApplicationTests {
 			list.add(user);
 		}
 		//redisService.set("userList",list);
-		System.out.println(redisServiceApi.get("userList"));
+		System.out.println(redisClient.get("userList"));
 	}
 	@Test
 	public void testMapper(){
 		for(User user:userMapper.selectAll()){
 			System.out.println(user.toString());
 		}
-
 	}
-
 }

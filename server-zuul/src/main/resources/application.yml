@@ -3,6 +3,39 @@ server:
 spring:
   application:
     name: server-zuul
+  datasource:
+        name: test
+        url: jdbc:mysql://127.0.0.1:3306/work_space_4
+        username: jess.zhong
+        password: jess
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+redis:
+  database: 0
+  host: 127.0.0.1
+  password:
+  port: 6379
+  pool:
+    max-active: 8
+    max-wait: -1
+    max-idle: 8
+    min-idle: 0
+  timeout: 0
+  data-timeout: 600
 eureka:
   #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
   # 告知服务端15秒还未收到心跳的话，就将该服务移除列表

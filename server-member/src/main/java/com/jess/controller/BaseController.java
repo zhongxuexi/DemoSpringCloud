@@ -1,7 +1,7 @@
 package com.jess.controller;
 
-import com.jess.commons.api.util.CodeMsg;
-import com.jess.commons.api.util.Result;
+import com.jess.common.util.CodeMsg;
+import com.jess.common.util.Result;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 

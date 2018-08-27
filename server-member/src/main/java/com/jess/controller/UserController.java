@@ -1,7 +1,7 @@
 package com.jess.controller;
-import com.jess.commons.api.util.Result;
-import com.jess.commons.entity.User;
-import com.jess.commons.util.PageBean;
+import com.jess.common.util.PageBean;
+import com.jess.common.util.Result;
+import com.jess.entity.User;
 import com.jess.service.FileUploadService;
 import com.jess.service.UserService;
 import io.swagger.annotations.Api;
@@ -50,7 +50,7 @@ public class UserController extends BaseController{
      */
     @ApiOperation(value="新增用户")
     @PostMapping(value = "/add")
-    public Result addUser(@RequestBody User user) throws Exception {
+    public Result addUser(@ModelAttribute User user) throws Exception {
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
         Integer count = userService.addUser(user);

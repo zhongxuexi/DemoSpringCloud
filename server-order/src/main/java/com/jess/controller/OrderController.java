@@ -1,12 +1,12 @@
 package com.jess.controller;
 
-import com.jess.commons.api.util.Result;
-import com.jess.commons.service.MemberServiceFegin;
-import com.jess.commons.util.EmailUtil;
+import com.jess.common.component.redis.RedisClient;
+import com.jess.common.service.MemberServiceFegin;
+import com.jess.common.util.Result;
+import com.jess.common.util.EmailUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private MemberServiceFegin memberServiceFegin;
+    @Autowired
+    private RedisClient redisClient;
 
-    @ApiOperation(value="测试Feign远程调用", notes="feignTest")
+    @ApiOperation(value="测试发送邮件", notes="mailTest")
     @GetMapping(value = "/testEmail")
     public Result testEmail(@RequestParam("title") String title,
                             @RequestParam("body") String body) throws Exception {

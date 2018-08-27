@@ -2,13 +2,8 @@ package com.jess;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -16,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @EnableSwagger2
 @MapperScan(basePackages = {"com.jess.dao"})
 @ComponentScan(basePackages = {"com.jess"})
-@EnableFeignClients(basePackages = {"com.jess.commons"})
+@EnableFeignClients(basePackages = {"com.jess.common"})
 public class ServerOrderApplication {
 
 //	@Bean

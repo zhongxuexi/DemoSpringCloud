@@ -20,13 +20,13 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.jess.commons</groupId>
-			<artifactId>server-commons-api</artifactId>
+			<groupId>com.jess.common</groupId>
+			<artifactId>component-common</artifactId>
 			<version>${server-commons.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jess.commons</groupId>
-			<artifactId>server-commons</artifactId>
+			<groupId>com.jess.common</groupId>
+			<artifactId>component-fegin</artifactId>
 			<version>${server-commons.version}</version>
 		</dependency>
     </dependencies>

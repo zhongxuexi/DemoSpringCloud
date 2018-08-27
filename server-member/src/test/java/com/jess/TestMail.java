@@ -1,6 +1,6 @@
 package com.jess;
 
-import com.jess.commons.util.EmailUtil;
+import com.jess.common.util.EmailUtil;
 import org.apache.log4j.Logger;
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;

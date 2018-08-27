@@ -1,6 +1,7 @@
 package com.jess.dao.extend;
 
-import com.jess.commons.entity.User;
+
+import com.jess.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
