@@ -18,7 +18,7 @@ import java.util.*;
  */
 @RestController
 @CrossOrigin
-@Api(value="用户管理")
+@Api(value="用户管理",tags = {"用户管理接口"})
 @RequestMapping("/user")
 public class UserController extends BaseController{
     @Autowired

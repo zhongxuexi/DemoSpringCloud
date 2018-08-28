@@ -18,13 +18,13 @@ spring:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
-#  rabbitmq:
-#      host: 127.0.0.1
-#      port: 5672
-##      username: jess.zhong
-##      password: Zxx@!@686988
-#      username: guest
-#      password: guest
+  rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+#      username: jess.zhong
+#      password: Zxx@!@686988
+      username: guest
+      password: guest
   datasource:
     db1:
       name: mysql1

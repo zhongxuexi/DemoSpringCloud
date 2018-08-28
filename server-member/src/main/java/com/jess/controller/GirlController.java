@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin
-@Api(value="女孩管理")
+@Api(value="女孩管理",tags = {"女孩管理接口"})
 @RequestMapping("/girl")
 public class GirlController {
     @Autowired
