@@ -21,14 +21,14 @@
 		</dependency>
 		<dependency>
 			<groupId>com.jess.common</groupId>
+			<artifactId>component-common</artifactId>
+			<version>${server-commons.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jess.common</groupId>
 			<artifactId>component-fegin</artifactId>
 			<version>${server-commons.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>com.jess.common</groupId>
-            <artifactId>component-common</artifactId>
-            <version>${server-commons.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -175,7 +175,7 @@ public class UserController extends BaseController{
     @ApiOperation(value="测试接口")
     @GetMapping(value = "/test")
     public String test(@RequestParam("desc") String desc) throws Exception{
-        return "this is member server1111:"+desc;
+        return "this is member server:"+desc;
     }
 
 }

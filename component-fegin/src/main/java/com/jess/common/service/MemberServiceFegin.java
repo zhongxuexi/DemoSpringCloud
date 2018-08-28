@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Service
 @FeignClient(value = "server-member",fallback = MemberServiceFeginFallBack.class)
 public interface MemberServiceFegin {
-
-    @ApiOperation(value="测试接口")
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @RequestMapping(value = "/user/test",method = RequestMethod.GET)
     String test(@RequestParam("desc") String desc) throws Exception;
 }
