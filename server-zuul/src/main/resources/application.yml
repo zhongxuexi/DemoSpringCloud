@@ -53,10 +53,12 @@ zuul:
  # 禁止服务自动添加
   ignoredServices: '*'
   routes:
-    server-member:
-          path: /member/**
-    server-order:
+    会员系统:
+      path: /member/**
+      serviceId: server-member
+    订单系统:
       path: /order/**
+      serviceId: server-order
   max:
     host:
       connections: 10000

@@ -1,4 +1,4 @@
-package com.jess.config.db;
+package com.jess.common.config.multipleDB;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:定义数据源
  */
 @Configuration
 public class DataSourceConfig {

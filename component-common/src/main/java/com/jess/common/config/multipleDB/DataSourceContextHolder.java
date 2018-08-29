@@ -1,10 +1,9 @@
-package com.jess.config.db;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.jess.common.config.multipleDB;
 
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:数据源操作类
  */
 public class DataSourceContextHolder {
     /**

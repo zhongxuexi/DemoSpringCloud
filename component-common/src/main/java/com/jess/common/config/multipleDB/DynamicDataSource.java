@@ -1,18 +1,12 @@
-package com.jess.config.db;
+package com.jess.common.config.multipleDB;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.activation.DataSource;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:当前数据源
  */
-//当前数据源：
 public class DynamicDataSource extends AbstractRoutingDataSource {
 
     @Override

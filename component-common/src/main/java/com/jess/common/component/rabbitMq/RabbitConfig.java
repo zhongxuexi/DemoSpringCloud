@@ -1,4 +1,4 @@
-package com.jess.config.rabbit;
+package com.jess.common.component.rabbitMq;
 
 
 import org.springframework.amqp.core.Queue;
@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:定义队列
  */
 @Configuration
 public class RabbitConfig {

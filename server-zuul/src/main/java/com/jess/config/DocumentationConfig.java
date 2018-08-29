@@ -1,10 +1,11 @@
 package com.jess.config;
 
+import org.springframework.cloud.netflix.zuul.filters.Route;
+import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +15,16 @@ import java.util.List;
 @Component
 @Primary
 public class DocumentationConfig implements SwaggerResourcesProvider {
-
+    private final RouteLocator routeLocator;
+    public DocumentationConfig(RouteLocator routeLocator) {
+        this.routeLocator = routeLocator;
+    }
     @Override
     public List<SwaggerResource> get() {
         List resources = new ArrayList<>();
-        resources.add(swaggerResource("会员系统", "/jess/member/v2/api-docs", "2.0"));
-        resources.add(swaggerResource("订单系统", "/jess/order/v2/api-docs", "2.0"));
+        List<Route> routes = routeLocator.getRoutes();
+        //在这里遍历的时候，可以排除掉敏感微服务的路由
+        routes.forEach(route -> resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs"),"2.0")));
         return resources;
     }
     private SwaggerResource swaggerResource(String name, String location, String version) {

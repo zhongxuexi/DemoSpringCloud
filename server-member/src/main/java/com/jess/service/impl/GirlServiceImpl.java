@@ -1,7 +1,7 @@
 package com.jess.service.impl;
 
 import com.jess.common.util.Result;
-import com.jess.config.db.DS;
+import com.jess.common.config.multipleDB.DS;
 import com.jess.dao.GirlMapper;
 import com.jess.entity.Girl;
 import com.jess.service.GirlService;

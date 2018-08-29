@@ -1,4 +1,4 @@
-package com.jess.config.db;
+package com.jess.common.config.multipleDB;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -6,16 +6,17 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
-
 import java.lang.reflect.Method;
 
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:配置切面
  */
 @Aspect
 @Component
 public class DynamicDataSourceAspect {
-    @Before("@annotation(DS)")
+    @Before("@annotation(com.jess.common.config.multipleDB.DS)")
     public void beforeSwitchDS(JoinPoint point) {
 //获得当前访问的class
         Class<?> className = point.getTarget().getClass();
@@ -40,7 +41,7 @@ public class DynamicDataSourceAspect {
         DataSourceContextHolder.setDB(dataSource);
     }
 
-    @After("@annotation(DS)")
+    @After("@annotation(com.jess.common.config.multipleDB.DS)")
     public void afterSwitchDS(JoinPoint point) {
         DataSourceContextHolder.clearDB();
     }

@@ -1,4 +1,4 @@
-package com.jess.config.db;
+package com.jess.common.config.multipleDB;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by zhongxuexi on 2018/8/28.
+ * @Auther: zhongxuexi
+ * @Date: 2018/8/29 21:31
+ * @Description:注解定义
  */
 //自定义注解
 @Retention(RetentionPolicy.RUNTIME)
