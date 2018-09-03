@@ -1,5 +1,8 @@
 package com.jess.common.config.multipleDB;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,15 +22,15 @@ import java.util.Map;
 @Configuration
 public class DataSourceConfig {
     //数据源1
-    @Bean(name = "datasource1")
-    @ConfigurationProperties(prefix = "spring.datasource.db1") // application.yml中对应属性的前缀
+    @Bean(name = "default")
+    @ConfigurationProperties(prefix = "spring.datasource.default") // application.yml中对应属性的前缀
     public DataSource dataSource1() {
         return DataSourceBuilder.create().build();
     }
 
     //数据源2
-    @Bean(name = "datasource2")
-    @ConfigurationProperties(prefix = "spring.datasource.db2") // application.yml中对应属性的前缀
+    @Bean(name = "master")
+    @ConfigurationProperties(prefix = "spring.datasource.master") // application.yml中对应属性的前缀
     public DataSource dataSource2() {
         return DataSourceBuilder.create().build();
     }
@@ -45,16 +48,31 @@ public class DataSourceConfig {
         dynamicDataSource.setDefaultTargetDataSource(dataSource1());
         // 配置多数据源
         Map<Object, Object> dsMap = new HashMap();
-        dsMap.put("datasource1", dataSource1());
-        dsMap.put("datasource2", dataSource2());
+        dsMap.put("default", dataSource1());
+        dsMap.put("master", dataSource2());
 
         dynamicDataSource.setTargetDataSources(dsMap);
         return dynamicDataSource;
     }
 
+    @Bean
+    @ConfigurationProperties(prefix = "mybatis")
+    public SqlSessionFactory sqlSessionFactory(DataSource dynamicDataSource) throws Exception {
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setDataSource(dynamicDataSource);
+        org.apache.ibatis.session.Configuration config = bean.getObject().getConfiguration();
+        config.setCallSettersOnNulls(true);
+        return bean.getObject();
+    }
+
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory); // 使用上面配置的Factory
+        return template;
+    }
+
     /**
      * 配置@Transactional注解事物
-     *
      * @return
      */
     @Bean

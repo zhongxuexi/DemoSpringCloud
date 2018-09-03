@@ -1,5 +1,7 @@
 package com.jess.common.config.multipleDB;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
@@ -8,10 +10,10 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  * @Description:当前数据源
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
-
+    private static final Logger log = LoggerFactory.getLogger(DynamicDataSource.class);
     @Override
     protected Object determineCurrentLookupKey() {
-        System.out.println("当前数据源为"+DataSourceContextHolder.getDB());
+        log.debug("当前数据源为---->{}", DataSourceContextHolder.getDB());
         return DataSourceContextHolder.getDB();
     }
 }

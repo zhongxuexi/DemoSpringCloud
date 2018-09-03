@@ -26,7 +26,7 @@ spring:
       username: guest
       password: guest
   datasource:
-    db1:
+    default:
       name: mysql1
       url: jdbc:mysql://127.0.0.1:3306/work_space_4
       username: jess.zhong
@@ -38,7 +38,7 @@ spring:
       maxActive: 20
       initialSize: 1
       maxWait: 60000
-      minIdle: 1
+      minIdle: 5
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
       validationQuery: select 'x'
@@ -47,7 +47,7 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-    db2:
+    master:
       name: mysql2
       #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
       url: jdbc:mysql://127.0.0.1:3306/work_space_1
@@ -60,7 +60,7 @@ spring:
       maxActive: 20
       initialSize: 1
       maxWait: 60000
-      minIdle: 1
+      minIdle: 5
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
       validationQuery: select 'x'
