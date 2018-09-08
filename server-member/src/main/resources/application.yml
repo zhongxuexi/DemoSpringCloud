@@ -8,12 +8,17 @@ web:
 eureka:
   client:
     service-url:
-      defaultZone: http://server1:8101/eureka/
+      defaultZone: http://server1:8001/eureka/
 spring:
   profiles:
     active: member1
   application:
     name: server-member
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false #使用时间戳，使用数值timestamp表示日期
   http:
     multipart:
       maxFileSize: 5Mb
@@ -70,11 +75,6 @@ spring:
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
 
-#mybatis&&通用Mapper
-mybatis:
-  type-aliases-package: com.jess.entity
-  mapper-locations: classpath:mapper/**/**.xml
-
 #分页
 pagehelper:
     helperDialect: mysql
@@ -97,7 +97,7 @@ redis:
 # 日志配置
 logging:
 #  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
-#  file: E:\workSpaces\work_space_4\logs\jess.log  #日志输出目录--本地环境
+  file: E:\workSpaces\work_space_4\logs\server-member\member.log  #日志输出目录--本地环境
   level:
       # com.jess包下所有class以DEBUG级别输出
       com.jess: DEBUG

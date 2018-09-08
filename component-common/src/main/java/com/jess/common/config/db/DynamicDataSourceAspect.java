@@ -19,8 +19,7 @@ import java.lang.reflect.Method;
 @Order(1)
 @Component
 public class DynamicDataSourceAspect {
-    @Around("@annotation(com.jess.common.config.db.DS)")
-    //@Around("execution(* com.hunter.nocardpay.*.service..*(..))")
+    @Around("execution(* com.jess..service..*.*(..))")
     public Object switchDS(ProceedingJoinPoint point) throws Throwable {
         Class<?> className = point.getTarget().getClass();
         String dataSource = DataSourceConstant.DB_DEFAULT;

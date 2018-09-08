@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8101
 spring:
   application:
     name: server-zuul
@@ -47,7 +47,7 @@ eureka:
   lease-renewal-interval-in-seconds: 5
   client:
     service-url:
-      defaultZone: http://server1:8101/eureka/
+      defaultZone: http://server1:8001/eureka/
 zuul:
   prefix: /jess
  # 禁止服务自动添加
@@ -61,15 +61,14 @@ zuul:
       serviceId: server-order
   max:
     host:
-      connections: 10000
+      connections: 60000
   #超时设置
   host:
-    socket-timeout-millis: 1000000
-    connect-timeout-millis: 1000000
-#熔断器启用
-feign:
-  hystrix:
-    enabled: true
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
 hystrix:
   command:
     default:
@@ -78,5 +77,17 @@ hystrix:
           enabled: true
         isolation:
           thread:
-            timeoutInMilliseconds: 1000000
+            timeoutInMilliseconds: 300000
+# 日志配置
+logging:
+#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
+  file: E:\workSpaces\work_space_4\logs\server-zuul\zuul.log  #日志输出目录--本地环境
+  level:
+      # com.jess包下所有class以DEBUG级别输出
+      com.jess: DEBUG
+      # root日志以WARN级别输出
+      root: WARN
+      org:
+        springframework:
+          web: DEBUG
 

@@ -1,18 +1,20 @@
-eureka:
-  client:
-    service-url:
-      defaultZone: http://server1:8101/eureka/
 server:
   port: 9011
 spring:
   application:
     name: server-order
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false #使用时间戳，使用数值timestamp表示日期
   http:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
   datasource:
-      name: test
+    default:
+      name: mysql1
       url: jdbc:mysql://127.0.0.1:3306/work_space_4
       username: jess.zhong
       password: jess
@@ -23,19 +25,45 @@ spring:
       maxActive: 20
       initialSize: 1
       maxWait: 60000
-      minIdle: 1
+      minIdle: 5
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
-      validationQuery: select 'x'
+#      validationQuery: select 'x'
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
+    master:
+      name: mysql2
+      #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+      url: jdbc:mysql://127.0.0.1:3306/work_space_1
+      username: jess.zhong
+      password: jess
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 5
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+#      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8001/eureka/
 #mybatis&&通用Mapper
-mybatis:
-  type-aliases-package: com.jess.entity
-  mapper-locations: classpath:mapper/**/**.xml
+#mybatis:
+#  type-aliases-package: com.jess.entity
+#  mapper-locations: classpath:mapper/**/**.xml
 
 #分页
 pagehelper:
@@ -59,7 +87,7 @@ redis:
 # 日志配置
 logging:
 #  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
-  file: E:\workSpaces\work_space_4\logs\jess.log  #日志输出目录--本地环境
+  file: E:\workSpaces\work_space_4\logs\server-order\order.log  #日志输出目录--本地环境
   level:
       # com.jess包下所有class以DEBUG级别输出
       com.jess: DEBUG

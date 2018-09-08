@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>ClassName: RedisConfig</p>
@@ -29,7 +32,7 @@ import java.util.Arrays;
 @Data
 @Configuration
 @EnableCaching
-public class RedisConfig {
+public class RedisConfig extends CachingConfigurerSupport {
 	@Value("${redis.host}")
 	private String host;
 	@Value("${redis.port}")
@@ -42,18 +45,27 @@ public class RedisConfig {
 	private int dataTimeout;
 
 	/**
+	 * 在使用@Cacheable时，如果不指定key，则使用找个默认的key生成器生成的key
 	 * <p> Title: 生成key </p>
 	 * <p>Description: key组成： 类名+方法名+参数值</p>
 	 * @return
 	 */
 	@Bean
+	@Override
 	public KeyGenerator keyGenerator() {
 		return (target, method, params) -> {
 			StringBuilder sb = new StringBuilder();
 			sb.append(target.getClass().getName());
-			sb.append(method.getName());
-			for (Object obj : params) {
-				sb.append(obj.toString());
+			sb.append(".").append(method.getName());
+			StringBuilder paramsSb = new StringBuilder();
+			for (Object param : params) {
+				// 如果不指定，默认生成包含到键值中
+				if (param != null) {
+					paramsSb.append(param.toString());
+				}
+			}
+			if (paramsSb.length() > 0) {
+				sb.append("_").append(paramsSb);
 			}
 			return sb.toString();
 		};
@@ -82,11 +94,16 @@ public class RedisConfig {
 	 * @return CacheManager
 	 */
 	@Bean
-	public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate) {
+	public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate,RedisKeys redisKeys) {
 		RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
-		// 多个缓存的名称,目前只定义了一个
-		cacheManager.setCacheNames(Arrays.asList("thisRedis"));
+		// 设置缓存默认过期时间（全局的）
 		cacheManager.setDefaultExpiration(dataTimeout);
+
+		// 根据key设定具体的缓存时间，key统一放在常量类RedisKeys中
+		cacheManager.setExpires(redisKeys.getExpiresMap());
+
+		List<String> cacheNames = new ArrayList<String>(redisKeys.getExpiresMap().keySet());
+		cacheManager.setCacheNames(cacheNames);
 		return cacheManager;
 	}
 
