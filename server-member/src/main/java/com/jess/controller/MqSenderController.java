@@ -14,17 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @CrossOrigin
-@Api(value="发送消息队列",tags={"发送消息队列接口"})
-@RequestMapping("/mq")
-public class MqController {
+@Api(value="发送消息",tags={"发送消息"})
+@RequestMapping("/mqsender")
+public class MqSenderController {
     @Autowired
     AmqpTemplate rabbitmqTemplate;
 
-    @ApiOperation(value="发送消息")
-    @GetMapping("/send")
-    public String send(String msg){
+    @ApiOperation(value="okong发送消息")
+    @GetMapping("/okong")
+    public String okongSend(String msg){
         //发送消息
         rabbitmqTemplate.convertAndSend("okong",msg);
+        return "消息："+msg+"，已发送";
+    }
+
+    @ApiOperation(value="jess发送消息")
+    @GetMapping("/jess")
+    public String jessSend(String msg){
+        //发送消息
+        rabbitmqTemplate.convertAndSend("jess",msg);
         return "消息："+msg+"，已发送";
     }
 }

@@ -1,13 +1,14 @@
-package com.jess.common.config.multipleDB;
+package com.jess.common.config.db;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
@@ -25,14 +26,14 @@ public class DataSourceConfig {
     @Bean(name = "default")
     @ConfigurationProperties(prefix = "spring.datasource.default") // application.yml中对应属性的前缀
     public DataSource dataSource1() {
-        return DataSourceBuilder.create().build();
+        return DruidDataSourceBuilder.create().build();
     }
 
     //数据源2
     @Bean(name = "master")
     @ConfigurationProperties(prefix = "spring.datasource.master") // application.yml中对应属性的前缀
     public DataSource dataSource2() {
-        return DataSourceBuilder.create().build();
+        return DruidDataSourceBuilder.create().build();
     }
 
     /**
@@ -60,8 +61,10 @@ public class DataSourceConfig {
     public SqlSessionFactory sqlSessionFactory(DataSource dynamicDataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dynamicDataSource);
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*.xml"));
         org.apache.ibatis.session.Configuration config = bean.getObject().getConfiguration();
         config.setCallSettersOnNulls(true);
+        bean.setConfiguration(config);
         return bean.getObject();
     }
 

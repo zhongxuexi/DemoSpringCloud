@@ -41,7 +41,7 @@ spring:
       minIdle: 5
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
-      validationQuery: select 'x'
+#      validationQuery: select 'x'
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
@@ -63,7 +63,7 @@ spring:
       minIdle: 5
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
-      validationQuery: select 'x'
+#      validationQuery: select 'x'
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false

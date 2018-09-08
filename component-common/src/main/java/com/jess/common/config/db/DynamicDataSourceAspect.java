@@ -1,12 +1,9 @@
-package com.jess.common.config.multipleDB;
+package com.jess.common.config.db;
 
 import com.jess.common.constants.DataSourceConstant;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -22,7 +19,7 @@ import java.lang.reflect.Method;
 @Order(1)
 @Component
 public class DynamicDataSourceAspect {
-    @Around("@annotation(com.jess.common.config.multipleDB.DS)")
+    @Around("@annotation(com.jess.common.config.db.DS)")
     //@Around("execution(* com.hunter.nocardpay.*.service..*(..))")
     public Object switchDS(ProceedingJoinPoint point) throws Throwable {
         Class<?> className = point.getTarget().getClass();

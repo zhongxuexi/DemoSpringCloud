@@ -1,11 +1,9 @@
 package com.jess.service.impl;
 
 import com.google.common.collect.Maps;
-import com.jess.common.config.multipleDB.DataSourceContextHolder;
-import com.jess.common.config.multipleDB.DataSourceManager;
+import com.jess.common.config.db.DataSourceManager;
 import com.jess.common.constants.DataSourceConstant;
 import com.jess.common.util.Result;
-import com.jess.common.config.multipleDB.DS;
 import com.jess.dao.GirlMapper;
 import com.jess.dao.UserMapper;
 import com.jess.entity.Girl;
