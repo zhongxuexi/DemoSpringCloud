@@ -10,8 +10,6 @@ eureka:
     service-url:
       defaultZone: http://server1:8001/eureka/
 spring:
-  profiles:
-    active: member1
   application:
     name: server-member
   jackson:

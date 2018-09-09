@@ -3,11 +3,8 @@ package com.jess.common.util;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jess.common.exception.FieldException;
-import com.jess.common.util.DateUtil;
-import com.jess.common.util.LogUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -26,33 +23,17 @@ public class FieldMapUtil<T> {
      * @param field
      * @return
      */
-    public String[] getFields(String field, Class c) throws Exception {
+    public String[] getFields(String field, Object obj) throws Exception {
         if (StringUtils.isNoneBlank(field)) {
             //检查field合法性规则
-            if(checkIsValid(field,c)){
+            if(checkIsValid(field,obj)){
                 return field.split(",");
             }else{
                 throw new FieldException("field与数据库字段不一致，请输入正确的field值!");
             }
         } else {
-            return getAllFields(c);
+            return ReflectionUtils.getAllFields(obj);
         }
-    }
-
-    private String[] getAllFields(Class c) throws IllegalAccessException, ClassNotFoundException {
-        //获取Class对象
-        Field[] fields = c.getDeclaredFields();
-        Field.setAccessible(fields, true);
-        List<String> list = Lists.newArrayList();
-        for (int i = 0; i < fields.length; i++) {
-            fields[i].setAccessible(true);      //设置对象的访问权限，保证对private的属性的访问
-            if(fields[i].getName().contains("Time")||fields[i].getName().contains("delete")){
-                continue;
-            }
-            list.add(fields[i].getName());
-        }
-        String[] str= new String[list.size()];
-        return list.toArray(str);
     }
 
     /**
@@ -67,7 +48,7 @@ public class FieldMapUtil<T> {
         for (T t : resultList) {
             Map<String, Object> map = Maps.newLinkedHashMap();
             for (String item : fields) {
-                Object fieldNameValue = getFieldValueByFieldName(item, t);  //属性名获取属性值
+                Object fieldNameValue = ReflectionUtils.getFieldValue(t,item);  //属性名获取属性值
                 map.put(item, fieldNameValue);
             }
             listMap.add(map);
@@ -75,10 +56,16 @@ public class FieldMapUtil<T> {
         return listMap;
     }
 
-    public Map<String, Object> getResultMap(String[] fields, T t){
+    /**
+     * 通过属性数组，结果集合，获得Map
+     * @param fields
+     * @param obj
+     * @return
+     */
+    public Map<String, Object> getResultMap(String[] fields, final Object obj){
         Map<String, Object> map = Maps.newLinkedHashMap();
         for (String item : fields) {
-            Object fieldNameValue = getFieldValueByFieldName(item, t);  //属性名获取属性值
+            Object fieldNameValue = ReflectionUtils.getFieldValue(obj,item);  //属性名获取属性值
             map.put(item, fieldNameValue);
         }
         return map;
@@ -87,19 +74,19 @@ public class FieldMapUtil<T> {
     /**
      * 判断传入的field是否合法
      * @param field
-     * @param c
-     * @return
+     * @param obj
+     * @return boolean
      * @throws ClassNotFoundException
      * @throws IllegalAccessException
      */
-    public boolean checkIsValid(String field,Class c) throws ClassNotFoundException, IllegalAccessException {
+    public boolean checkIsValid(String field,final Object obj) throws ClassNotFoundException, IllegalAccessException {
         String pattern = "(?i)^(?!,)[a-zA-Z0-9,]+(?<!,)$"; //开头和结尾不能是分隔符,
         boolean isMatch = Pattern.matches(pattern, field);
         if (!isMatch) {
             throw new FieldException("field字段之间必须以英文,分割且首末不能有分割符!");
         }
         String[] fields = field.split(",");
-        String[] allFields = getAllFields(c);
+        String[] allFields = ReflectionUtils.getAllFields(obj);
         boolean flag = false;
         for(String outItem:fields){
             for(String innerItem:allFields){
@@ -115,31 +102,5 @@ public class FieldMapUtil<T> {
             }
         }
         return true;
-    }
-
-    /**
-     * 根据属性名获取属性值
-     *
-     * @param fieldName
-     * @param t
-     * @return
-     */
-    private Object getFieldValueByFieldName(String fieldName, T t) {
-        try {
-            Field field = t.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);  //设置对象的访问权限，保证对private的属性的访问
-            Object obj = null;
-            //时间戳转换
-            Type type = field.getGenericType();
-            if (type.toString().equals("class java.util.Date")) {
-                obj = DateUtil.Date2Str((Date) field.get(t));
-            } else {
-                obj = field.get(t);
-            }
-            return obj;
-        } catch (Exception e) {
-            LogUtil.logger.info(e.getMessage());
-            return null;
-        }
     }
 }

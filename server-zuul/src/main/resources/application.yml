@@ -1,5 +1,3 @@
-server:
-  port: 8101
 spring:
   application:
     name: server-zuul
@@ -90,4 +88,6 @@ logging:
       org:
         springframework:
           web: DEBUG
-
+#server-zuul:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule

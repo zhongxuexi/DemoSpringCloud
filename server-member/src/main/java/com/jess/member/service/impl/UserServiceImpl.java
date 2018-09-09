@@ -100,12 +100,11 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = RedisKeys._CACHE_COMMON)
     @Override
     public Map<String, Object> findUserById(Long id, String field) throws Exception {
-        User user = null;
         String[] fields = fieldMapUtil.getFields(field, User.class);
         Example example = new Example(User.class);
         example.or().andEqualTo("id", id);
         example.selectProperties(fields);
-        user = userMapper.selectOneByExample(example);  //db取数据
+        User user = userMapper.selectOneByExample(example);  //db取数据
         Map resultMap = fieldMapUtil.getResultMap(fields, user);
         return resultMap;
     }

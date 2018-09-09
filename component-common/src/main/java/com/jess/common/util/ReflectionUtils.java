@@ -12,7 +12,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Date;
+import java.util.List;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -103,13 +106,42 @@ public class ReflectionUtils {
 			return result;
 		}
 		try {
+		//时间戳转换
+		Type type = field.getGenericType();
+		if (type.toString().equals("class java.util.Date")) {
+			result = DateUtil.DateStr((Date) field.get(obj));
+		}else{
 			result = field.get(obj);
+		}
 		} catch (IllegalAccessException e) {
 			logger.error("不可能抛出的异常{}", e.getMessage());
 		} catch (NullPointerException e) {
 			logger.error("字段不存在：{}", e.getMessage());
 		}
 		return result;
+	}
+
+	/**
+	 * @Title <p>Title: 读取对象所有属性</p>
+	 * @param obj
+	 * @return 属性数组
+	 * @throws IllegalAccessException
+	 * @throws ClassNotFoundException
+	 */
+	public static String[] getAllFields(final Object obj) throws IllegalAccessException, ClassNotFoundException {
+		//获取Class对象
+		Field[] fields = obj.getClass().getDeclaredFields();
+		Field.setAccessible(fields, true);
+		List<String> list = Lists.newArrayList();
+		for (int i = 0; i < fields.length; i++) {
+			fields[i].setAccessible(true);      //设置对象的访问权限，保证对private的属性的访问
+//			if(fields[i].getName().contains("Time")||fields[i].getName().contains("delete")){
+//				continue;
+//			}
+			list.add(fields[i].getName());
+		}
+		String[] str= new String[list.size()];
+		return list.toArray(str);
 	}
 
 	/**

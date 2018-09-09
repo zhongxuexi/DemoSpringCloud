@@ -528,6 +528,11 @@ public class DateUtil {
         return (int) getDaySub(str_begin,str_end);
     }
 
+    //时间格式化 yyyy-MM-dd HH:mm:ss
+    public static String DateStr(Date date){
+        return sdfTime.format(date);
+    }
+
     //时间格式化 yyyy-MM-dd
     public static String Date2Str(Date date){
         return sdfDay.format(date);

@@ -11,9 +11,9 @@ spring:
       mail:
         smtp:
           auth: true
-          starttls:
-            enable: true
-            required: true
+#          starttls:
+#            enable: true
+#            required: true
   boot:
     admin:
       notify:
@@ -26,7 +26,7 @@ eureka:
   client:
     registryFetchIntervalSeconds: 5
     serviceUrl:
-      defaultZone: http://server1:8101/eureka/
+      defaultZone: http://server1:8001/eureka/
 management:
   security:
     enabled: false

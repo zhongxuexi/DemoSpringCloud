@@ -16,7 +16,6 @@ public class Result<T> {
         this.code = 200;
         this.msg = "成功";
         this.count = 0;
-        System.out.println("初始化...");
     }
 
     private Result(T data,Integer count) {
