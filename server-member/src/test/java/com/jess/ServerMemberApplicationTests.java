@@ -2,8 +2,8 @@ package com.jess;
 
 import com.google.common.collect.Lists;
 import com.jess.common.component.redis.RedisClient;
-import com.jess.dao.UserMapper;
-import com.jess.entity.User;
+import com.jess.member.dao.UserMapper;
+import com.jess.member.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
