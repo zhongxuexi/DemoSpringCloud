@@ -16,6 +16,7 @@
 		<module>server-admin</module>
 		<module>component-common</module>
 		<module>component-fegin</module>
+		<module>server-config</module>
 		<module>server-member</module>
 		<module>server-order</module>
 	</modules>
