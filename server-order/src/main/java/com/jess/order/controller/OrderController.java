@@ -11,6 +11,7 @@ import com.jess.order.service.VersionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -24,27 +25,14 @@ import java.util.Map;
 @CrossOrigin
 @Api(value = "订单管理")
 public class OrderController {
+    @Value("${userName}")
+    private String userName;
     @Autowired
     private MemberServiceFegin memberServiceFegin;
     @Autowired
     private RedisClient redisClient;
     @Autowired
     private VersionService versionService;
-
-    @ApiOperation(value = "测试发送邮件", notes = "mailTest")
-    @GetMapping(value = "/testEmail")
-    public Result testEmail(@RequestParam("title") String title,
-                            @RequestParam("body") String body) throws Exception {
-        EmailUtil.sendHtmlMail("jess.zhong@aliyun.com", title, body);
-        return Result.success();
-    }
-
-    @ApiOperation(value = "测试Feign远程调用", notes = "testFeign")
-    @GetMapping(value = "/testFeign")
-    public String test(@RequestParam("desc") String desc) throws Exception {
-        System.out.println("测试feign远程调用");
-        return memberServiceFegin.test(desc);
-    }
 
     @ApiOperation(value = "查找版本", notes = "查找版本")
     @GetMapping(value = "/findVersion")
@@ -71,6 +59,27 @@ public class OrderController {
         LogUtil.logger.info("excel导出成功");
         out.close();
         return Result.success();
+    }
+
+    @ApiOperation(value = "测试发送邮件", notes = "testEmail")
+    @GetMapping(value = "/testEmail")
+    public Result testEmail(@RequestParam("title") String title,
+                            @RequestParam("body") String body) throws Exception {
+        EmailUtil.sendHtmlMail("jess.zhong@aliyun.com", title, body);
+        return Result.success();
+    }
+
+    @ApiOperation(value = "测试Feign远程调用", notes = "testFeign")
+    @GetMapping(value = "/testFeign")
+    public String testFeign(@RequestParam("desc") String desc) throws Exception {
+        System.out.println("测试feign远程调用");
+        return memberServiceFegin.test(desc);
+    }
+
+    @ApiOperation(value = "测试config获取配置", notes = "testConfig")
+    @GetMapping(value = "/testConfig")
+    public String testConfig(){
+        return "返回的配置信息："+userName;
     }
 
 }
