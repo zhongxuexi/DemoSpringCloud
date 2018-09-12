@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -23,7 +24,8 @@ import java.util.Map;
  */
 @RestController
 @CrossOrigin
-@Api(value = "订单管理")
+@Api(value = "订单管理",tags = {"订单管理接口"})
+@RefreshScope//此注解，是在访问/refresh后服务端加载新配置，自动把新配置注入
 public class OrderController {
     @Value("${userName}")
     private String userName;

@@ -1,8 +1,6 @@
 server:
   port: 9011
 spring:
-  application:
-    name: server-order
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
     timezone: GMT+8
@@ -56,15 +54,6 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-eureka:
-  client:
-    service-url:
-      defaultZone: http://server1:8001/eureka/
-#mybatis&&通用Mapper
-#mybatis:
-#  type-aliases-package: com.jess.entity
-#  mapper-locations: classpath:mapper/**/**.xml
-
 #分页
 pagehelper:
     helperDialect: mysql
@@ -84,6 +73,11 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
+#rabbitmq:
+#  host: 127.0.0.1
+#  port: 5672
+#  username: guest
+#  password: guest
 # 日志配置
 logging:
 #  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
