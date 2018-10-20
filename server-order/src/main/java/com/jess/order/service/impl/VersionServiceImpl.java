@@ -1,6 +1,6 @@
 package com.jess.order.service.impl;
 
-import com.jess.common.config.db.DS;
+import com.jess.common.config.commonDB.DS;
 import com.jess.common.constants.DataSourceConstant;
 import com.jess.order.dao.extend.VersionExtendMapper;
 import com.jess.order.service.VersionService;

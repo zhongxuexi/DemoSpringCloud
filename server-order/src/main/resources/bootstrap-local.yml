@@ -20,7 +20,7 @@ eureka:
     hostname: ${spring.cloud.client.ipAddress}
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka/
+      defaultZone: http://127.0.0.1:8000/eureka/
 #关闭认证，actuator自带认证，不关闭无法访问/refresh
 management:
   security:

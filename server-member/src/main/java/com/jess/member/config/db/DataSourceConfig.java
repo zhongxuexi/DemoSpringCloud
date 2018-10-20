@@ -1,7 +1,7 @@
 package com.jess.member.config.db;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.jess.common.config.db.DynamicDataSource;
+import com.jess.common.config.commonDB.DynamicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;

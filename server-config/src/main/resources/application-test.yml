@@ -1,6 +1,6 @@
 #服务端口
 server:
-  port: 8110
+  port: 8010
 #服务名称
 spring:
   application:

@@ -1,4 +1,4 @@
-package com.jess.common.config.db;
+package com.jess.common.config.commonDB;
 
 import com.jess.common.constants.DataSourceConstant;
 import org.aspectj.lang.ProceedingJoinPoint;

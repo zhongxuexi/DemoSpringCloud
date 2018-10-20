@@ -1,12 +1,12 @@
 server:
-    port: 8200 #启动端口
+    port: 8030 #启动端口
 spring:
   application:
       name: server-admin
   mail:
     host: smtp.aliyun.com
     username: jess.zhong@aliyun.com
-    password: *******
+    password: Zxx@!@686988
     properties:
       mail:
         smtp:
@@ -29,7 +29,4 @@ eureka:
     hostname: ${spring.cloud.client.ipAddress}
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka/
-management:
-  security:
-    enabled: false
+      defaultZone: http://127.0.0.1:8000/eureka/

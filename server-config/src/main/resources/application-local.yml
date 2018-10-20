@@ -1,20 +1,17 @@
-#服务端口
 server:
-  port: 8110
-#服务名称
+  port: 8010
 spring:
   application:
     name: server-config
   cloud:
     config:
       label: master
-      username: zhongxuexi      #git仓库的用户名
-      password: Zxx@!@686988    #git仓库的密码
+#      username: zhongxuexi
+#      password: Zxx@!@686988
       server:
         git:
-          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git   #服务的git仓库地址
-          search-paths: spring-cloud-repo/**     #配置文件所在的目录
-#服务注册中心
+          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git
+          search-paths: spring-cloud-repo/**
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:
@@ -24,4 +21,4 @@ eureka:
     hostname: ${spring.cloud.client.ipAddress}
   client:
     service-url:
-      defaultZone: http://localhost:8000/eureka/
+      defaultZone: http://127.0.0.1:8000/eureka/

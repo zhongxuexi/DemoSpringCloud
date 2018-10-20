@@ -1,4 +1,4 @@
-package com.jess.common.config.db;
+package com.jess.common.config.commonDB;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

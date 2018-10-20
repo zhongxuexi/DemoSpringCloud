@@ -1,7 +1,7 @@
 package com.jess.member.service.impl;
 
 import com.google.common.collect.Maps;
-import com.jess.common.config.db.DataSourceManager;
+import com.jess.common.config.commonDB.DataSourceManager;
 import com.jess.common.constants.DataSourceConstant;
 import com.jess.common.util.Result;
 import com.jess.member.dao.GirlMapper;

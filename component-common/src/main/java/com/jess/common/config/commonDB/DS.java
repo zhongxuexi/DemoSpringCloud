@@ -1,4 +1,4 @@
-package com.jess.common.config.db;
+package com.jess.common.config.commonDB;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

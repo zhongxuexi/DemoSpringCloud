@@ -1,4 +1,4 @@
-package com.jess.common.config.db;
+package com.jess.common.config.commonDB;
 
 /**
  * @Auther: zhongxuexi

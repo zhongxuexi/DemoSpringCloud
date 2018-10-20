@@ -1,4 +1,4 @@
-package com.jess.order.config.db;
+package com.jess.common.config.db;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.jess.common.config.commonDB.DynamicDataSource;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;

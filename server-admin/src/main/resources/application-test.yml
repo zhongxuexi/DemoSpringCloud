@@ -1,5 +1,5 @@
 server:
-    port: 8200 #启动端口
+    port: 8030 #启动端口
 spring:
   application:
       name: server-admin
@@ -30,6 +30,3 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka/
-management:
-  security:
-    enabled: false
