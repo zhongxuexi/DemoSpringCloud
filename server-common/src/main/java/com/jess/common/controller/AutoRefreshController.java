@@ -17,8 +17,8 @@ public class AutoRefreshController {
 
     @ApiOperation(value = "bus自动刷新配置", notes = "bus自动刷新配置")
     @RequestMapping(value = "/autoRefresh",method = RequestMethod.GET)
-    public String autoRefresh(){
-        HttpUtils.refresh();
-        return "bus success refresh config";
+    public void autoRefresh(){
+        String url="http://localhost:8020/refresh";
+        HttpUtils.refresh(url);
     }
 }

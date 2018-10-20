@@ -29,7 +29,7 @@ spring:
   datasource:
     default:
       name: mysql1
-      url: jdbc:mysql://127.0.0.1:3306/work_space_4
+      url: jdbc:mysql://127.0.0.1:3306/work_space_1
       username: jess.zhong
       password: jess
       # 使用druid数据源

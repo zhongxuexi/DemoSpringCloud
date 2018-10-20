@@ -10,10 +10,10 @@ import java.net.URL;
  * @Description: 发送post到/refresh地址工具类
  */
 public class HttpUtils {
-    public static void refresh() {
+    public static void refresh(String serverURL) {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL("http://localhost:8110/refresh");
+            URL url = new URL(serverURL);
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
@@ -22,6 +22,7 @@ public class HttpUtils {
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
+            LogUtil.logger.error(serverURL+"配置更新失败!");
         } finally {
             if (connection != null) {
                 connection.disconnect();
