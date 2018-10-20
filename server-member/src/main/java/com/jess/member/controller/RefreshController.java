@@ -1,6 +1,10 @@
 package com.jess.member.controller;
 
+import com.jess.common.util.CodeMsg;
 import com.jess.common.util.HttpUtils;
+import com.jess.common.util.LogUtil;
+import com.jess.common.util.Result;
+import com.sun.org.apache.regexp.internal.RE;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +24,14 @@ public class RefreshController {
 
     @ApiOperation(value = "server-member更新配置接口", notes = "请求POST /refresh")
     @GetMapping(value = "/update")
-    public void refreshConfig(){
+    public Result refreshConfig(){
         String url="http://localhost:8020/jess/member/refresh";
-        HttpUtils.refresh(url);
+        try {
+            HttpUtils.refresh(url);
+        }catch (Exception e){
+            LogUtil.logger.error(e.getMessage());
+            return Result.error(CodeMsg.SERVER_EXCEPTION,"server-member更新配置失败，请重试！");
+        }
+        return Result.success();
     }
 }

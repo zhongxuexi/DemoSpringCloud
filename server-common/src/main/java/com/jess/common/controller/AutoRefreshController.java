@@ -19,6 +19,6 @@ public class AutoRefreshController {
     @RequestMapping(value = "/autoRefresh",method = RequestMethod.GET)
     public void autoRefresh(){
         String url="http://localhost:8020/refresh";
-        HttpUtils.refresh(url);
+        //HttpUtils.refresh(url);
     }
 }

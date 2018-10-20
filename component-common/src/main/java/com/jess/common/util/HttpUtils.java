@@ -10,7 +10,7 @@ import java.net.URL;
  * @Description: 发送post到/refresh地址工具类
  */
 public class HttpUtils {
-    public static void refresh(String serverURL) {
+    public static void refresh(String serverURL) throws Exception {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(serverURL);
@@ -22,7 +22,7 @@ public class HttpUtils {
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtil.logger.error(serverURL+"配置更新失败!");
+            throw new Exception(serverURL+"配置更新失败!");
         } finally {
             if (connection != null) {
                 connection.disconnect();
