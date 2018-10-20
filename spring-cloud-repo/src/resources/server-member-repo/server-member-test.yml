@@ -1,7 +1,7 @@
 web:
   #linux环境
-  upload-path: /home/springCloud/upload_file/
-  upload-url: http://192.168.0.188:8080/file
+  upload-path: C:\springcloud\upload_file\
+  upload-url: http://192.168.65.131:9011/file
 spring:
   cloud:
     config:   #和配置重试机制相关的配置有如下四个：
@@ -19,17 +19,17 @@ spring:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
-  rabbitmq:
-      host: 127.0.0.1
-      port: 5672
-#      username: jess.zhong
-#      password: Zxx@!@686988
-      username: guest
-      password: guest
+#  rabbitmq:
+#      host: 127.0.0.1
+#      port: 5672
+##      username: jess.zhong
+##      password: Zxx@!@686988
+#      username: guest
+#      password: guest
   datasource:
     default:
       name: mysql1
-      url: jdbc:mysql://127.0.0.1:3306/work_space_4
+      url: jdbc:mysql://192.168.0.104:3306/work_space_4
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -51,7 +51,7 @@ spring:
     master:
       name: mysql2
       #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
-      url: jdbc:mysql://127.0.0.1:3306/work_space_1
+      url: jdbc:mysql://192.168.0.104:3306/work_space_1
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -79,7 +79,7 @@ pagehelper:
     params: count=countSql
 redis:
   database: 0
-  host: 127.0.0.1
+  host: 192.168.65.131
   password:
   port: 6379
   pool:
@@ -91,7 +91,7 @@ redis:
   data-timeout: 600
 # 日志配置
 logging:
-  file: /home/springCloud/log/jess.log  #日志输出目录
+  file: C:\springcloud\logs\server-member\member.log  #日志输出目录
   level:
     com.jess: DEBUG       # com.jess包下所有class以DEBUG级别输出
     root: WARN      # root日志以WARN级别输出

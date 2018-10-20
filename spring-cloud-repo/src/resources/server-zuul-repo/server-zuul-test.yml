@@ -8,7 +8,7 @@ spring:
         max-interval: 2000    # 最大间隔时间，默认2000ms
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/work_space_4
+    url: jdbc:mysql://192.168.0.104:3306/work_space_4
     username: jess.zhong
     password: jess
     # 使用druid数据源
@@ -29,7 +29,7 @@ spring:
     maxOpenPreparedStatements: 20
 redis:
   database: 0
-  host: 127.0.0.1
+  host: 192.168.65.131
   password:
   port: 6379
   pool:
@@ -52,7 +52,7 @@ zuul:
       serviceId: server-order
 # 日志配置
 logging:
-  file: /home/springCloud/log/jess.log  #日志输出目录
+  file: C:\springcloud\logs\server-zuul\zuul.log  #日志输出目录
   level:
     com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
     root: WARN    # root日志以WARN级别输出
