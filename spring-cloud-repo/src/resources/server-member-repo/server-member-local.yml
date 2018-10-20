@@ -29,7 +29,7 @@ spring:
   datasource:
     default:
       name: mysql1
-      url: jdbc:mysql://127.0.0.1:3306/work_space_4
+      url: jdbc:mysql://127.0.0.1:3306/work_space_1
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -92,7 +92,7 @@ redis:
   data-timeout: 600
 # 日志配置
 logging:
-  file: E:\workSpaces\work_space_4\logs\server-member\member222.log  #日志输出目录
+  file: E:\workSpaces\work_space_4\logs\server-member\member333.log  #日志输出目录
   level:
       com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
       root: WARN        # root日志以WARN级别输出
