@@ -19,8 +19,8 @@ import java.util.*;
 /**
  * Created by zhongxuexi on 2018/6/5.
  */
+@CrossOrigin(origins = "http://localhost:8880", maxAge = 3600)
 @RestController
-@CrossOrigin
 @Api(value = "用户管理", tags = {"用户管理接口"})
 @RequestMapping("/user")
 public class UserController extends BaseController {
@@ -58,7 +58,7 @@ public class UserController extends BaseController {
         @ApiImplicitParam(name = "id",value = "用户id",dataType = "Long",paramType = "query"),
         @ApiImplicitParam(name = "realname",value = "用户真实姓名",dataType = "string",paramType = "query",example = "钟学曦")
     })
-    public Result editUser(User user) throws Exception {
+    public Result editUser(@RequestBody User user) throws Exception {
         Integer count = -1;
         if (null == user.getId()) {
             user.setCreateTime(new Date());

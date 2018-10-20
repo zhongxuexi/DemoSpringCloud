@@ -1,0 +1,35 @@
+server:
+    port: 8200 #启动端口
+spring:
+  application:
+      name: server-admin
+  mail:
+    host: smtp.aliyun.com
+    username: jess.zhong@aliyun.com
+    password: *******
+    properties:
+      mail:
+        smtp:
+          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+  boot:
+    admin:
+      notify:
+        mail:
+          from: jess.zhong@aliyun.com
+          to: jess.zhong@aliyun.com
+eureka:
+  lease-renewal-interval-in-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    hostname: ${spring.cloud.client.ipAddress}
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+management:
+  security:
+    enabled: false

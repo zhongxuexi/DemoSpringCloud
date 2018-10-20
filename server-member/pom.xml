@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.jess.member</groupId>
-	<artifactId>server-member</artifactId>
-	<packaging>jar</packaging>
-	<name>server-member</name>
-	<description>会员微服务</description>
+    <groupId>com.jess.member</groupId>
+    <artifactId>server-member</artifactId>
+    <packaging>jar</packaging>
+    <name>server-member</name>
+    <description>会员微服务</description>
 
-	<parent>
-		<groupId>com.jess</groupId>
-		<artifactId>DemoSpringCloud</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>com.jess</groupId>
+        <artifactId>DemoSpringCloud</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.jess.common</groupId>
-			<artifactId>component-common</artifactId>
-			<version>${server-commons.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.jess.common</groupId>
-			<artifactId>component-fegin</artifactId>
-			<version>${server-commons.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jess.common</groupId>
+            <artifactId>component-common</artifactId>
+            <version>${server-commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jess.common</groupId>
+            <artifactId>component-fegin</artifactId>
+            <version>${server-commons.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

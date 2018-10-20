@@ -1,0 +1,88 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false #使用时间戳，使用数值timestamp表示日期
+  http:
+    multipart:
+      maxFileSize: 5Mb
+      maxRequestSize: 5Mb
+  datasource:
+    default:
+      name: mysql1
+      url: jdbc:mysql://127.0.0.1:3306/work_space_4
+      username: jess.zhong
+      password: jess
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 5
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+#      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+    master:
+      name: mysql2
+      #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+      url: jdbc:mysql://127.0.0.1:3306/work_space_1
+      username: jess.zhong
+      password: jess
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 5
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+#      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+#分页
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    pageSizeZero: true
+    params: count=countSql
+redis:
+  database: 0
+  host: 127.0.0.1
+  password:
+  port: 6379
+  pool:
+    max-active: 8
+    max-wait: -1
+    max-idle: 8
+    min-idle: 0
+  timeout: 0
+  data-timeout: 600
+#rabbitmq:
+#  host: 127.0.0.1
+#  port: 5672
+#  username: guest
+#  password: guest
+# 日志配置
+logging:
+#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
+  file: E:\workSpaces\work_space_4\logs\server-common\common.log  #日志输出目录--本地环境
+  level:
+    com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
+    root: WARN        # root日志以WARN级别输出
+    org:
+      springframework:
+        web: DEBUG

@@ -13,7 +13,7 @@ public class Result<T> {
     private T data;
 
     {
-        this.code = 200;
+        this.code = 0;
         this.msg = "成功";
         this.count = 0;
     }

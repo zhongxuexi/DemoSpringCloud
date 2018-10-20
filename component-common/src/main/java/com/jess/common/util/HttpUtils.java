@@ -13,7 +13,7 @@ public class HttpUtils {
     public static void refresh() {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL("http://localhost:9011/refresh");
+            URL url = new URL("http://localhost:8110/bus/refresh");
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");

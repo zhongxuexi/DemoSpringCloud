@@ -1,17 +1,4 @@
-web:
-##本地环境
-  upload-path: E:\workSpaces\work_space_4\upload_file\
-  upload-url: http://localhost:9001/file
-#linux环境
-#  upload-path: /home/springCloud/upload_file/
-#  upload-url: http://192.168.0.188:8080/file
-eureka:
-  client:
-    service-url:
-      defaultZone: http://server1:8001/eureka/
 spring:
-  application:
-    name: server-member
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
     timezone: GMT+8
@@ -21,13 +8,6 @@ spring:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
-  rabbitmq:
-      host: 127.0.0.1
-      port: 5672
-#      username: jess.zhong
-#      password: Zxx@!@686988
-      username: guest
-      password: guest
   datasource:
     default:
       name: mysql1
@@ -72,14 +52,13 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-
 #分页
 pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    pageSizeZero: true
-    params: count=countSql
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  pageSizeZero: true
+  params: count=countSql
 redis:
   database: 0
   host: 127.0.0.1
@@ -92,18 +71,17 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
+#rabbitmq:
+#  host: 127.0.0.1
+#  port: 5672
+#  username: guest
+#  password: guest
 # 日志配置
 logging:
-#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
-  file: E:\workSpaces\work_space_4\logs\server-member\member.log  #日志输出目录--本地环境
+  file: /home/springCloud/log/jess.log  #日志输出目录
   level:
-      # com.jess包下所有class以DEBUG级别输出
-      com.jess: DEBUG
-      # root日志以WARN级别输出
-      root: WARN
-      org:
-        springframework:
-          web: DEBUG
-management:
-  security:
-    enabled: false
+    com.jess: DEBUG       # com.jess包下所有class以DEBUG级别输出
+    root: WARN        # root日志以WARN级别输出
+    org:
+      springframework:
+        web: DEBUG

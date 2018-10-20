@@ -1,5 +1,7 @@
-server:
-  port: 9011
+web:
+  #linux环境
+  upload-path: /home/springCloud/upload_file/
+  upload-url: http://192.168.0.188:8080/file
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
@@ -10,6 +12,13 @@ spring:
     multipart:
       maxFileSize: 5Mb
       maxRequestSize: 5Mb
+  rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+#      username: jess.zhong
+#      password: Zxx@!@686988
+      username: guest
+      password: guest
   datasource:
     default:
       name: mysql1
@@ -73,23 +82,12 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
-#rabbitmq:
-#  host: 127.0.0.1
-#  port: 5672
-#  username: guest
-#  password: guest
 # 日志配置
 logging:
-#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
-  file: E:\workSpaces\work_space_4\logs\server-order\order.log  #日志输出目录--本地环境
+  file: /home/springCloud/log/jess.log  #日志输出目录
   level:
-      # com.jess包下所有class以DEBUG级别输出
-      com.jess: DEBUG
-      # root日志以WARN级别输出
-      root: WARN
-      org:
-        springframework:
-          web: DEBUG
-management:
-  security:
-    enabled: false
+    com.jess: DEBUG       # com.jess包下所有class以DEBUG级别输出
+    root: WARN      # root日志以WARN级别输出
+    org:
+      springframework:
+        web: DEBUG

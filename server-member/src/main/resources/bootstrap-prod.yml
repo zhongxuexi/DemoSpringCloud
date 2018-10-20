@@ -1,0 +1,27 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: server-member
+  cloud:
+    config:
+      label: master   #配置文件所在分支
+      profile: local   #环境如：local、test、prod
+      name: server-member
+      discovery:
+        enabled: true
+        service-id: server-config     #配置服务实例名称
+eureka:
+  lease-renewal-interval-in-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    hostname: ${spring.cloud.client.ipAddress}
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+#关闭认证，actuator自带认证，不关闭无法访问/refresh
+management:
+  security:
+    enabled: false

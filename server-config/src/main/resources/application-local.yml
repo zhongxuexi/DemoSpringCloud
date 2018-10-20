@@ -1,0 +1,27 @@
+#服务端口
+server:
+  port: 8110
+#服务名称
+spring:
+  application:
+    name: server-config
+  cloud:
+    config:
+      label: master
+      username: zhongxuexi      #git仓库的用户名
+      password: Zxx@!@686988    #git仓库的密码
+      server:
+        git:
+          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git   #服务的git仓库地址
+          search-paths: spring-cloud-repo/**     #配置文件所在的目录
+#服务注册中心
+eureka:
+  lease-renewal-interval-in-seconds: 5
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    hostname: ${spring.cloud.client.ipAddress}
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

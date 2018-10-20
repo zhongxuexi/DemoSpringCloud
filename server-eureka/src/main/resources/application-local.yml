@@ -1,0 +1,20 @@
+server:
+  port: 8000
+spring:
+   application:
+     name: server-eureka
+eureka:
+  server:
+    # 自我保护机制
+    enable-self-preservation: true
+    # 每隔10s扫描服务列表，移除失效服务
+    eviction-interval-timer-in-ms: 1000
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    hostname: ${spring.cloud.client.ipAddress}
+  client:
+    register-with-eureka: false   #false表示不向注册中心注册自己
+    fetch-registry: false
+    service-url:
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
