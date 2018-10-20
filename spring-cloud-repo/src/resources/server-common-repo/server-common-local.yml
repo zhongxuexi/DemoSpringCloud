@@ -85,8 +85,7 @@ redis:
 #  password: guest
 # 日志配置
 logging:
-#  file: /home/springCloud/log/jess.log  #日志输出目录--linux环境
-  file: E:\workSpaces\work_space_4\logs\server-common\common.log  #日志输出目录--本地环境
+  file: E:\workSpaces\work_space_4\springcloud\logs\server-common\common.log  #日志输出目录--本地环境
   level:
     com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
     root: WARN        # root日志以WARN级别输出
