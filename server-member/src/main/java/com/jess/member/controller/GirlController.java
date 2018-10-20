@@ -5,6 +5,7 @@ import com.jess.member.service.GirlService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @Api(value="女孩管理",tags = {"女孩管理接口"})
+@RefreshScope//此注解，是在访问/refresh后服务端加载新配置，自动把新配置注入
 @RequestMapping("/girl")
 public class GirlController {
     @Autowired

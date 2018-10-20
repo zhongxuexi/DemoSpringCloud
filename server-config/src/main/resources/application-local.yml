@@ -6,12 +6,13 @@ spring:
   cloud:
     config:
       label: master
-#      username: zhongxuexi
-#      password: Zxx@!@686988
       server:
         git:
           uri:  https://github.com/zhongxuexi/DemoSpringCloud.git
           search-paths: spring-cloud-repo/**
+#          username: zhongxuexi
+#          password: ***
+          force-pull: true
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:

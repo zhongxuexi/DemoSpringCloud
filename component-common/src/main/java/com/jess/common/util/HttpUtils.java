@@ -7,13 +7,13 @@ import java.net.URL;
 /**
  * @Auther: zhongxuexi
  * @Date: 2018/9/12 23:12
- * @Description: 工具类发送post到/refresh地址
+ * @Description: 发送post到/refresh地址工具类
  */
 public class HttpUtils {
     public static void refresh() {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL("http://localhost:8110/bus/refresh");
+            URL url = new URL("http://localhost:8110/refresh");
             connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");

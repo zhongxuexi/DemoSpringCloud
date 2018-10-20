@@ -8,6 +8,7 @@ spring:
       label: master   #配置文件所在分支
       profile: local   #环境如：local、test、prod
       name: server-common
+      fail-fast: true   #启动失败时能够快速响应
       discovery:
         enabled: true
         service-id: server-config     #配置服务实例名称

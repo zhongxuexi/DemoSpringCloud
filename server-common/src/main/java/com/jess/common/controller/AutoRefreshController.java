@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin
-@Api(value = "微服务配置自动刷新",tags = {"微服务配置自动刷新接口"})
+@Api(value = "微服务配置刷新",tags = {"微服务配置刷新接口"})
 public class AutoRefreshController {
 
     @ApiOperation(value = "bus自动刷新配置", notes = "bus自动刷新配置")

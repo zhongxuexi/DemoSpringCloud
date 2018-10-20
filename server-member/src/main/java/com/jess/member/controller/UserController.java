@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +23,7 @@ import java.util.*;
 @CrossOrigin(origins = "http://localhost:8880", maxAge = 3600)
 @RestController
 @Api(value = "用户管理", tags = {"用户管理接口"})
+@RefreshScope//此注解，是在访问/refresh后服务端加载新配置，自动把新配置注入
 @RequestMapping("/user")
 public class UserController extends BaseController {
     @Autowired

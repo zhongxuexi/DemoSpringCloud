@@ -18,3 +18,7 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
+#关闭认证，actuator自带认证，不关闭无法访问/refresh
+management:
+  security:
+    enabled: false

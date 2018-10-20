@@ -11,7 +11,6 @@ import com.jess.order.service.VersionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 import java.io.FileOutputStream;
@@ -26,9 +25,7 @@ import java.util.Map;
 @CrossOrigin
 @Api(value = "订单管理",tags = {"订单管理接口"})
 @RefreshScope//此注解，是在访问/refresh后服务端加载新配置，自动把新配置注入
-public class OrderController {
-    @Value("${userName}")
-    private String userName;
+public class OrderController {;
     @Autowired
     private MemberServiceFegin memberServiceFegin;
     @Autowired
@@ -77,11 +74,4 @@ public class OrderController {
         System.out.println("测试feign远程调用");
         return memberServiceFegin.test(desc);
     }
-
-    @ApiOperation(value = "测试config获取配置", notes = "testConfig")
-    @GetMapping(value = "/testConfig")
-    public String testConfig(){
-        return "返回的配置信息："+userName;
-    }
-
 }

@@ -3,6 +3,13 @@ web:
   upload-path: E:\workSpaces\work_space_4\upload_file\
   upload-url: http://localhost:9011/file
 spring:
+  cloud:
+    config:   #和配置重试机制相关的配置有如下四个：
+      retry:
+        max-attempts: 6   # 配置重试次数，默认为6
+        multiplier: 1.1   # 间隔乘数，默认1.1
+        initial-interval: 1000    # 初始重试间隔时间，默认1000ms
+        max-interval: 2000    # 最大间隔时间，默认2000ms
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss #如果使用字符串表示，用这行设置格式
     timezone: GMT+8
