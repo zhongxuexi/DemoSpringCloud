@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Api(value = "server-member手动更新配置", tags = {"server-member微服务"})
+@RequestMapping(value = "/config")
 public class RefreshController {
 
-    @ApiOperation(value = "server-member更新配置接口", notes = "/refresh")
-    @PostMapping(value = "/refresh")
+    @ApiOperation(value = "server-member更新配置接口", notes = "请求POST /refresh")
+    @GetMapping(value = "/update")
     public void refreshConfig(){
-       // String url="http://localhost:8020/jess/member/refresh";
-       // HttpUtils.refresh(url);
+        String url="http://localhost:8020/jess/member/refresh";
+        HttpUtils.refresh(url);
     }
 }
