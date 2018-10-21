@@ -74,4 +74,10 @@ public class OrderController {;
         System.out.println("测试feign远程调用");
         return memberServiceFegin.test(desc);
     }
+
+    @ApiOperation(value = "测试redis客户端", notes = "test redis")
+    @GetMapping(value = "/testRedis")
+    public void testRedis(@RequestParam("desc") String desc){
+        redisClient.set("zhong",desc);
+    }
 }
