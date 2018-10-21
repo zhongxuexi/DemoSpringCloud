@@ -8,12 +8,14 @@ spring:
   cloud:
     config:
       label: master
-      username: zhongxuexi      #git仓库的用户名
-      password: Zxx@!@686988    #git仓库的密码
       server:
         git:
-          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git   #服务的git仓库地址
-          search-paths: spring-cloud-repo/**     #配置文件所在的目录
+          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git
+          search-paths: spring-cloud-repo/**
+#          username: zhongxuexi
+#          password: ***
+          force-pull: true
+          basedir: \springcloud\config_repository
 #服务注册中心
 eureka:
   lease-renewal-interval-in-seconds: 5

@@ -85,7 +85,7 @@ redis:
 #  password: guest
 # 日志配置
 logging:
-  file: C:\springcloud\logs\server-order\order.log  #日志输出目录
+  file: \springcloud\logs\server-order\order.log  #日志输出目录
   level:
     com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
     root: WARN      # root日志以WARN级别输出

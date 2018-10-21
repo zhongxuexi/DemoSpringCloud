@@ -6,7 +6,7 @@ spring:
   cloud:
     config:
       label: master   #配置文件所在分支
-      profile: local   #环境如：local、test、prod
+      profile: test   #环境如：local、test、prod
       name: server-order
       fail-fast: true   #启动失败时能够快速响应
       discovery:

@@ -91,7 +91,7 @@ redis:
   data-timeout: 600
 # 日志配置
 logging:
-  path: C:\springcloud\logs\server-member\member.log  #日志输出目录
+  file: \springcloud\logs\server-member\member.log  #日志输出目录
   level:
     com.jess: DEBUG       # com.jess包下所有class以DEBUG级别输出
     root: WARN      # root日志以WARN级别输出

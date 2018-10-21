@@ -15,7 +15,7 @@ spring:
 #          username: zhongxuexi
 #          password: ***
           force-pull: true
-          basedir: C:\springcloud\config_repository
+          basedir: \springcloud\config_repository
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:
