@@ -52,7 +52,7 @@ zuul:
       serviceId: server-order
 # 日志配置
 logging:
-  file: E:\workSpaces\work_space_4\springcloud\logs\server-zuul\zuul.log  #日志输出目录
+  file: C:\workSpaces\work_space_4\springcloud\logs\server-zuul\zuul.log  #日志输出目录
   level:
     com.jess: DEBUG     # com.jess包下所有class以DEBUG级别输出
     root: WARN    # root日志以WARN级别输出
