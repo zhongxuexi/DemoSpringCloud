@@ -8,7 +8,7 @@ spring:
         max-interval: 2000    # 最大间隔时间，默认2000ms
   datasource:
     name: test
-    url: jdbc:mysql://192.168.0.104:3306/work_space_4
+    url: jdbc:mysql://192.168.0.101:3306/work_space_4
     username: jess.zhong
     password: jess
     # 使用druid数据源
