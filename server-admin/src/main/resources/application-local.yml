@@ -3,23 +3,23 @@ server:
 spring:
   application:
       name: server-admin
-  mail:
-    host: smtp.aliyun.com
-    username: jess.zhong@aliyun.com
-    password: Zxx@!@686988
-    properties:
-      mail:
-        smtp:
-          auth: true
+#  mail:
+#    host: smtp.aliyun.com
+#    username: jess.zhong@aliyun.com
+#    password: Zxx@!@686988
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
 #          starttls:
 #            enable: true
 #            required: true
-  boot:
-    admin:
-      notify:
-        mail:
-          from: jess.zhong@aliyun.com
-          to: jess.zhong@aliyun.com
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          from: jess.zhong@aliyun.com
+#          to: jess.zhong@aliyun.com
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:
