@@ -30,8 +30,8 @@ spring:
     default:
       name: mysql1
       url: jdbc:mysql://192.168.65.135:3306/demo_db1
-      username: jess.zhong
-      password: jess
+      username: root
+      password: jess.zhong
       # 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
@@ -52,8 +52,8 @@ spring:
       name: mysql2
       #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
       url: jdbc:mysql://192.168.65.135:3306/demo_db1
-      username: jess.zhong
-      password: jess
+      username: root
+      password: jess.zhong
       # 使用druid数据源
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
@@ -91,7 +91,7 @@ redis:
   data-timeout: 600
 # 日志配置
 logging:
-  file: C:\springcloud\logs\server-member\member.log  #日志输出目录
+  path: C:\springcloud\logs\server-member\member.log  #日志输出目录
   level:
     com.jess: DEBUG       # com.jess包下所有class以DEBUG级别输出
     root: WARN      # root日志以WARN级别输出
