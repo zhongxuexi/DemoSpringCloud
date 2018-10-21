@@ -8,9 +8,9 @@ spring:
         max-interval: 2000    # 最大间隔时间，默认2000ms
   datasource:
     name: test
-    url: jdbc:mysql://192.168.0.101:3306/work_space_4
-    username: jess.zhong
-    password: jess
+    url: jdbc:mysql://192.168.65.135:3306/demo_db1
+    username: root
+    password: jess.zhong
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -29,7 +29,7 @@ spring:
     maxOpenPreparedStatements: 20
 redis:
   database: 0
-  host: 192.168.65.131
+  host: 192.168.65.135
   password:
   port: 6379
   pool:

@@ -18,7 +18,7 @@ spring:
   datasource:
     default:
       name: mysql1
-      url: jdbc:mysql://192.168.0.104:3306/work_space_4
+      url: jdbc:mysql://192.168.65.135:3306/demo_db1
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -40,7 +40,7 @@ spring:
     master:
       name: mysql2
       #url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
-      url: jdbc:mysql://192.168.0.104:3306/work_space_1
+      url: jdbc:mysql://192.168.65.135:3306/demo_db1
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -68,7 +68,7 @@ pagehelper:
   params: count=countSql
 redis:
   database: 0
-  host: 192.168.65.131
+  host: 192.168.65.135
   password:
   port: 6379
   pool:
