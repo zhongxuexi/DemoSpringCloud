@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin
-@Api(value = "微服务配置刷新",tags = {"微服务配置刷新接口"})
+@Api(value = "bus配置自动刷新",tags = {"配置刷新接口"})
 public class AutoRefreshController {
 
-    @ApiOperation(value = "bus自动刷新配置", notes = "bus自动刷新配置")
-    @RequestMapping(value = "/autoRefresh",method = RequestMethod.GET)
-    public void autoRefresh(){
-        String url="http://localhost:8020/refresh";
-        //HttpUtils.refresh(url);
-    }
+//    @ApiOperation(value = "bus自动刷新配置", notes = "bus自动刷新配置")
+//    @RequestMapping(value = "/autoRefresh",method = RequestMethod.GET)
+//    public void autoRefresh(){
+//        String url="http://localhost:8020/refresh";
+//        HttpUtils.refresh(url);
+//    }
 }

@@ -1,8 +1,12 @@
-package com.jess.config;
+package com.jess.common.config;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -19,14 +23,19 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo());
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.jess.common.controller"))
+                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .paths(PathSelectors.any())
+                .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("分布式SpringcloudDemo系统")
-                .description("SpringcloudDemo系统接口文档说明")
-                .termsOfServiceUrl("http://localhost:8010")
+                .title("基础系统api")
+                .description("基础系统接口文档说明")
                 .contact(new Contact("zhongxuexi", "", "jess.zhong@aliyun.com"))
                 .version("1.0")
                 .build();

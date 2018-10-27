@@ -142,6 +142,10 @@ public class DateUtil {
         return day;
     }
 
+    public static long getSecondSub(Date startDate,Date endDate){
+        return (endDate.getTime()-startDate.getTime())/1000;
+    }
+
     /**
      * 得到n天之后的日期
      * @param days

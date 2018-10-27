@@ -57,7 +57,7 @@ public class OrderController {;
         exportExcel.exportExcel(headers,list,out);
         LogUtil.logger.info("excel导出成功");
         out.close();
-        return Result.success();
+        return Result.success("excel导出成功",1);
     }
 
     @ApiOperation(value = "测试发送邮件", notes = "testEmail")
@@ -77,7 +77,8 @@ public class OrderController {;
 
     @ApiOperation(value = "测试redis客户端", notes = "test redis")
     @GetMapping(value = "/testRedis")
-    public void testRedis(@RequestParam("desc") String desc){
-        redisClient.set("zhong",desc);
+    public String testRedis(@RequestParam("key") String key,@RequestParam("value") String value){
+        redisClient.set(key,value);
+        return redisClient.get(key, String.class);
     }
 }

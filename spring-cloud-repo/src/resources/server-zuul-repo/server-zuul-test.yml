@@ -37,6 +37,9 @@ zuul:
  # 禁止服务自动添加
   ignoredServices: '*'
   routes:
+    公共系统:
+      path: /common/**
+      serviceId: server-common
     会员系统:
       path: /member/**
       serviceId: server-member
