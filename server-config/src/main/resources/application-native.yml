@@ -5,15 +5,9 @@ spring:
     name: server-config
   cloud:
     config:
-      label: master
       server:
-        git:
-          uri:  https://github.com/zhongxuexi/DemoSpringCloud.git
-          search-paths: spring-cloud-repo/**
-#          username: zhongxuexi
-#          password: ***
-          force-pull: true
-          basedir: E:\workSpaces\work_space_4\springcloud\config_repository
+        native:
+          search-locations: E:/workSpaces/work_space_4/DemoSpringCloud/spring-cloud-repo/src/resources/local-repo
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:
