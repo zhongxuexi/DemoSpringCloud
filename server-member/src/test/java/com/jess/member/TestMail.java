@@ -1,4 +1,4 @@
-package com.jess;
+package com.jess.member;
 
 import com.jess.common.util.EmailUtil;
 import org.apache.log4j.Logger;

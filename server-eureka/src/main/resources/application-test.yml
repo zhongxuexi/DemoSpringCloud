@@ -6,7 +6,7 @@ spring:
 eureka:
   server:
     # 自我保护机制
-    enable-self-preservation: false
+    #enable-self-preservation: false
     # 每隔1s扫描服务列表，移除失效服务
     eviction-interval-timer-in-ms: 1000
   instance:

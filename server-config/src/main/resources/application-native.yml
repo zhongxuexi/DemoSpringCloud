@@ -11,9 +11,9 @@ spring:
 eureka:
   lease-renewal-interval-in-seconds: 5
   instance:
-    lease-expiration-duration-in-seconds: 15
+    lease-expiration-duration-in-seconds: 5
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8000/eureka/
+      defaultZone: http://localhost:8000/eureka/

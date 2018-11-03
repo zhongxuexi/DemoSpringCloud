@@ -42,4 +42,9 @@ public class GirlServiceImpl implements GirlService{
         map.put("users",users);
         return Result.success(map,girls.size()+users.size());
     }
+
+    @Override
+    public Girl findById(int id) {
+        return DataSourceManager.getDataSourceMapper(girlMapper,DataSourceConstant.DB_MASTER).selectByPrimaryKey(id);
+    }
 }

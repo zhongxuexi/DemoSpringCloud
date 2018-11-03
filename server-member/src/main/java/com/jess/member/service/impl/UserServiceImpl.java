@@ -3,7 +3,7 @@ package com.jess.member.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.jess.common.component.redis.RedisKeys;
-import com.jess.common.util.FieldMapUtil;
+import com.jess.common.util.ObjectToMapUtil;
 import com.jess.common.component.redis.RedisClient;
 import com.jess.common.util.Result;
 import com.jess.member.dao.UserMapper;
@@ -32,8 +32,6 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private RedisClient redisClient;
-    @Autowired
-    private FieldMapUtil fieldMapUtil;
 
     @Override
     public Result findByPage(String keyword, int currentPage, int pageSize) throws Exception {
@@ -100,13 +98,18 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = RedisKeys._CACHE_COMMON)
     @Override
     public Map<String, Object> findUserById(Long id, String field) throws Exception {
-        String[] fields = fieldMapUtil.getFields(field, User.class);
+        String[] fields = ObjectToMapUtil.getFields(field, User.class);
         Example example = new Example(User.class);
         example.or().andEqualTo("id", id);
         example.selectProperties(fields);
         User user = userMapper.selectOneByExample(example);  //db取数据
-        Map resultMap = fieldMapUtil.getResultMap(fields, user);
+        Map resultMap = ObjectToMapUtil.getResultMap(fields, user);
         return resultMap;
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Cacheable(value = RedisKeys._CACHE_SHORT)
@@ -114,10 +117,10 @@ public class UserServiceImpl implements UserService {
     public List<Map<String, Object>> findUserByName(String userName, String field) throws Exception {
         Example example = new Example(User.class);
         example.or().andLike("username", "%" + userName + "%").andCondition("delete_state=0");
-        String[] fields = fieldMapUtil.getFields(field, User.class);
+        String[] fields = ObjectToMapUtil.getFields(field, User.class);
         example.selectProperties(fields);
         List<User> users = userMapper.selectByExample(example);
-        List<Map<String, Object>> resultMap = fieldMapUtil.getResultMap(fields, users);
+        List<Map<String, Object>> resultMap = ObjectToMapUtil.getResultListMap(fields,users);
         return resultMap;
     }
 

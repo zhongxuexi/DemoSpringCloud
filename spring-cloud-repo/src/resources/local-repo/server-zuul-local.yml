@@ -32,6 +32,8 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
+  cluster:
+    nodes: 127.0.0.1:6380,127.0.0.1:6382,127.0.0.1:6384
 zuul:
   prefix: /jess
  # 禁止服务自动添加

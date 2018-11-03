@@ -8,6 +8,8 @@ spring:
         multiplier: 1.1   # 间隔乘数，默认1000ms
         initial-interval: 2000    # 初始重试间隔时间，默认1000ms
         max-interval: 3000    # 最大间隔时间，默认2000ms
+zuul:
+  retryable: true
 ribbon:
   okhttp:
     enabled: true
@@ -15,7 +17,7 @@ ribbon:
   SocketTimeout: 20000
   ConnectTimeout: 20000
   maxAutoRetries: 0   #对当前实例的重试次数
-  maxAutoRetriesNextServer: 2   #切换实例的重试次数，建议设置为当前服务的实例数。但不建议设置太大
+  maxAutoRetriesNextServer: 1   #切换实例的重试次数，建议设置为当前服务的实例数。但不建议设置太大
   okToRetryOnAllOperations: true    #对所有操作请求都进行重试
 hystrix:
   command:

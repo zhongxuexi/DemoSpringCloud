@@ -1,4 +1,4 @@
-package com.jess;
+package com.jess.member;
 
 
 import com.alibaba.fastjson.JSONArray;

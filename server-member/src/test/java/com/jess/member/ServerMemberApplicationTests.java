@@ -1,4 +1,4 @@
-package com.jess;
+package com.jess.member;
 
 import com.google.common.collect.Lists;
 import com.jess.common.component.redis.RedisClient;

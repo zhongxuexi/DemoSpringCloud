@@ -371,4 +371,25 @@ public class User {
     public void setDeleteState(String deleteState) {
         this.deleteState = deleteState == null ? null : deleteState.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", realname='" + realname + '\'' +
+                ", username='" + username + '\'' +
+                ", path='" + path + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age=" + age +
+                ", education='" + education + '\'' +
+                ", nativeplace='" + nativeplace + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", deleteState='" + deleteState + '\'' +
+                '}';
+    }
 }

@@ -71,6 +71,8 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
+  cluster:
+    nodes: 127.0.0.1:6380,127.0.0.1:6382,127.0.0.1:6384
 #rabbitmq:
 #  host: 127.0.0.1
 #  port: 5672

@@ -61,6 +61,13 @@ public interface UserService {
     Map<String,Object> findUserById(Long id,String field) throws Exception;
 
     /**
+     * 根据用户主键ID查询用户信息
+     * @param id
+     * @return
+     */
+    User findUserById(Long id);
+
+    /**
      * 根据用户名字模糊查询用户信息
      * @param userName
      * @return

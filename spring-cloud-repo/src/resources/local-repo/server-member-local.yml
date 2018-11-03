@@ -22,7 +22,7 @@ spring:
   datasource:
     default:
       name: mysql1
-      url: jdbc:mysql://127.0.0.1:3306/work_space_1
+      url: jdbc:mysql://127.0.0.1:3306/work_space_4
       username: jess.zhong
       password: jess
       # 使用druid数据源
@@ -83,6 +83,8 @@ redis:
     min-idle: 0
   timeout: 0
   data-timeout: 600
+  cluster:
+    nodes: 127.0.0.1:6380,127.0.0.1:6382,127.0.0.1:6384
 # 日志配置
 logging:
   file: E:\workSpaces\work_space_4\springcloud\logs\server-member\member.log  #日志输出目录

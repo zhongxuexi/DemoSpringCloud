@@ -1,4 +1,4 @@
-package com.jess;
+package com.jess.member;
 
 import org.apache.http.NameValuePair;
 import org.junit.Test;

@@ -79,6 +79,6 @@ public class OrderController {;
     @GetMapping(value = "/testRedis")
     public String testRedis(@RequestParam("key") String key,@RequestParam("value") String value){
         redisClient.set(key,value);
-        return redisClient.get(key, String.class);
+        return redisClient.get(key);
     }
 }

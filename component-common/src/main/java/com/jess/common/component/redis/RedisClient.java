@@ -14,6 +14,8 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.JedisCluster;
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -111,7 +113,6 @@ public class RedisClient {
 				return true;
 			}
 		});
-
 		redisTemplate.expire(key, timeout, TimeUnit.SECONDS);
 		return result;
 	}

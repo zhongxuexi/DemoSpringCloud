@@ -80,4 +80,14 @@ public class Girl {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Girl{" +
+                "id=" + id +
+                ", age=" + age +
+                ", cupSize='" + cupSize + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
