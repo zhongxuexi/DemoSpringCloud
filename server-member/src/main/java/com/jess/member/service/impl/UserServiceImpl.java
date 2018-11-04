@@ -4,7 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.jess.common.component.redis.RedisKeys;
 import com.jess.common.util.ObjectToMapUtil;
-import com.jess.common.component.redis.RedisClient;
+//import com.jess.common.component.redis.RedisClient;
 import com.jess.common.util.Result;
 import com.jess.member.dao.UserMapper;
 import com.jess.member.dao.extend.UserExtendMapper;
@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
     private UserExtendMapper userExtendMapper;
     @Autowired
     private UserMapper userMapper;
-    @Autowired
-    private RedisClient redisClient;
+   // @Autowired
+    //private RedisClient redisClient;
 
     @Override
     public Result findByPage(String keyword, int currentPage, int pageSize) throws Exception {

@@ -1,5 +1,7 @@
 package com.jess.order.service;
 
+import com.jess.order.entity.Version;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,4 +16,11 @@ public interface VersionService {
      * @return
      */
     List<Map<String, Object>> find();
+
+    /**
+     * 通过主键id查找
+     * @param id
+     * @return
+     */
+    Version findById(Long id);
 }

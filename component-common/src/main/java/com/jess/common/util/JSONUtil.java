@@ -22,7 +22,7 @@ public class JSONUtil {
 	}
 
 	public static String toJson(Object obj) {
-		return JSON.toJSONString(obj);
+		return JSON.toJSONStringWithDateFormat(obj,"yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**

@@ -97,8 +97,8 @@ public class ObjectToMapUtil {
                 for (String item : keySet) {
                     if (combinationKeySet.contains(item)) {
                         n++;
-                        String str = obj.getClass().getName().toLowerCase();
-                        String newStr = str.substring(str.lastIndexOf(".") + 1);
+                        String str = obj.getClass().getName();
+                        String newStr = str.substring(str.lastIndexOf(".") + 1).toLowerCase();
                         String newKey = newStr + "_" + item;
                         newResultMap.put(newKey, newResultMap.remove(item));
                     }

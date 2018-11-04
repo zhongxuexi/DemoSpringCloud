@@ -38,33 +38,29 @@ import java.util.*;
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-    @Value("${redis.cluster.nodes}")
-    private String clusterNodes;
 
-    @Value("${redis.host}")
-    private String host;
-    @Value("${redis.port}")
-    private int port;
-    @Value("${redis.password}")
-    private String password;
-    @Value("${redis.timeout}")
-    private int timeout;
-    @Value("${redis.database}")
-    private int database;
-    @Value("${redis.data-timeout}")
-    private int dataTimeout;
+    @Value("${redis.cluster.commandTimeout}")
+    private int commandTimeout;
+    @Value("${redis.cluster.max-attempts}")
+    private int maxAttempts;
+    @Value("${redis.cluster.max-redirects}")
+    private int maxRedirects;
     // 连接池最大连接数（使用负值表示没有限制）
-    @Value("${redis.pool.max-active}")
+    @Value("${redis.cluster.max-active}")
     private int maxTotal;
     // 连接池最大阻塞等待时间（使用负值表示没有限制）
-    @Value("${redis.pool.max-wait}")
+    @Value("${redis.cluster.max-wait}")
     private int maxWaitMillis;
     // 连接池中的最大空闲连接
-    @Value("${redis.pool.max-idle}")
+    @Value("${redis.cluster.max-idle}")
     private int maxIdle;
     // 连接池中的最小空闲连接
-    @Value("${redis.pool.min-idle}")
+    @Value("${redis.cluster.min-idle}")
     private int minIdle;
+    @Value("${redis.cluster.test-on-borrow}")
+    private boolean testOnBorrow;
+    @Value("${redis.cluster.nodes}")
+    private String clusterNodes;
 
     /**
      * 在使用@Cacheable时，如果不指定key，则使用找个默认的key生成器生成的key
@@ -98,8 +94,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     public RedisClusterConfiguration getClusterConfiguration() {
         Map<String, Object> source = new HashMap<String, Object>();
         source.put("spring.redis.cluster.nodes", clusterNodes);
-        source.put("spring.redis.cluster.timeout", timeout);
-        source.put("spring.redis.cluster.max-redirects", 5);
+        source.put("spring.redis.cluster.timeout", commandTimeout);
+        source.put("spring.redis.cluster.max-redirects", maxRedirects);
         return new RedisClusterConfiguration(new MapPropertySource("RedisClusterConfiguration", source));
     }
 
@@ -120,7 +116,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         jedisPoolConfig.setMaxIdle(this.maxIdle);
         // 连接池中的最小空闲连接
         jedisPoolConfig.setMinIdle(this.minIdle);
-        // jedisPoolConfig.setTestOnBorrow(true);
+        jedisPoolConfig.setTestOnBorrow(testOnBorrow);
         // jedisPoolConfig.setTestOnCreate(true);
         // jedisPoolConfig.setTestWhileIdle(true);
         return jedisPoolConfig;
@@ -133,35 +129,18 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean(name = "jedisConnectionFactory")
-    public JedisConnectionFactory redisConnectionFactory(@Qualifier(value = "jedisClusterConfig") RedisClusterConfiguration poolConfig) {
-        JedisConnectionFactory factory = new JedisConnectionFactory(poolConfig);
-        factory.setHostName(host);
-        factory.setPort(port);
-        factory.setPassword(password);
-        factory.setDatabase(database);
-        factory.setTimeout(timeout); // 设置连接超时时间
+    public JedisConnectionFactory redisConnectionFactory(@Qualifier(value = "jedisClusterConfig") RedisClusterConfiguration redisClusterConfiguration,
+                                                         @Qualifier("jedisPoolConfig") JedisPoolConfig poolConfig) {
+        JedisConnectionFactory factory = new JedisConnectionFactory(redisClusterConfiguration);
+        factory.setPoolConfig(poolConfig);
+        factory.setUsePool(true);
+        factory.afterPropertiesSet();
+//        factory.setHostName(host);
+//        factory.setPort(port);
+//        factory.setPassword(password);
+//        factory.setDatabase(database);
+//        factory.setTimeout(timeout); // 设置连接超时时间
         return factory;
-    }
-
-    /**
-     * <p>Title: 设置数据缓存默认超时时长</p>
-     * <p>Description: 以秒为单位 </p>
-     *
-     * @param redisTemplate
-     * @return CacheManager
-     */
-    @Bean
-    public CacheManager cacheManager(@SuppressWarnings("rawtypes")@Qualifier(value = "redisTemplate") RedisTemplate redisTemplate, RedisKeys redisKeys) {
-        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
-        // 设置缓存默认过期时间（全局的）
-        cacheManager.setDefaultExpiration(dataTimeout);
-
-        // 根据key设定具体的缓存时间，key统一放在常量类RedisKeys中
-        cacheManager.setExpires(redisKeys.getExpiresMap());
-
-        List<String> cacheNames = new ArrayList<String>(redisKeys.getExpiresMap().keySet());
-        cacheManager.setCacheNames(cacheNames);
-        return cacheManager;
     }
 
     /**
@@ -172,8 +151,9 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return RedisTemplate
      */
     @Bean(name = "redisTemplate")
-    public RedisTemplate<String, String> redisTemplate(@Qualifier(value = "jedisConnectionFactory") RedisConnectionFactory redisConnectionFactory) {
-        StringRedisTemplate template = new StringRedisTemplate(redisConnectionFactory);
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate template = new RedisTemplate();
+        template.setConnectionFactory(redisConnectionFactory);
         template.setEnableTransactionSupport(true);// 开启事务支持 ,在方法或者类上统一使用@Transactional标注事务
         setSerializer(template);
         template.afterPropertiesSet();
@@ -181,7 +161,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @SuppressWarnings("unchecked")
-    private void setSerializer(StringRedisTemplate template) {
+    private void setSerializer(RedisTemplate template) {
         @SuppressWarnings("rawtypes")
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
@@ -195,21 +175,42 @@ public class RedisConfig extends CachingConfigurerSupport {
 //        template.setValueSerializer(new EntityRedisSerializer());
     }
 
-    @Bean(name = "jedisCluster")
-    public JedisCluster getJedisCluster() {
-        // 截取集群节点
-        String[] cluster = clusterNodes.split(",");
-        // 创建set集合
-        Set<HostAndPort> nodes = new HashSet<HostAndPort>();
-        // 循环数组把集群节点添加到set集合中
-        for (String node : cluster) {
-            String[] host = node.split(":");
-            //添加集群节点
-            nodes.add(new HostAndPort(host[0], Integer.parseInt(host[1])));
-        }
-        JedisCluster jc = new JedisCluster(nodes);
-        return jc;
+    /**
+     * <p>Title: 设置数据缓存默认超时时长</p>
+     * <p>Description: 以秒为单位 </p>
+     *
+     * @param redisTemplate
+     * @return CacheManager
+     */
+    @Bean
+    public CacheManager cacheManager(@SuppressWarnings("rawtypes")@Qualifier(value = "redisTemplate") RedisTemplate redisTemplate, RedisKeys redisKeys) {
+        RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+        // 设置缓存默认过期时间（全局的）
+        cacheManager.setDefaultExpiration(commandTimeout);
 
+        // 根据key设定具体的缓存时间，key统一放在常量类RedisKeys中
+        cacheManager.setExpires(redisKeys.getExpiresMap());
+
+        List<String> cacheNames = new ArrayList<String>(redisKeys.getExpiresMap().keySet());
+        cacheManager.setCacheNames(cacheNames);
+        return cacheManager;
     }
+
+//    @Bean(name = "jedisCluster")
+//    public JedisCluster getJedisCluster() {
+//        // 截取集群节点
+//        String[] cluster = clusterNodes.split(",");
+//        // 创建set集合
+//        Set<HostAndPort> nodes = new HashSet<HostAndPort>();
+//        // 循环数组把集群节点添加到set集合中
+//        for (String node : cluster) {
+//            String[] host = node.split(":");
+//            //添加集群节点
+//            nodes.add(new HostAndPort(host[0], Integer.parseInt(host[1])));
+//        }
+//        JedisCluster jc = new JedisCluster(nodes);
+//        return jc;
+//
+//    }
 
 }

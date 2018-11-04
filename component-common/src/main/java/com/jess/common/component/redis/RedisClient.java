@@ -37,9 +37,9 @@ public class RedisClient {
 	private RedisTemplate<String, ?> redisTemplate;
 
 	/**
-	 * 
-	 * <p>Title: 新增POJO对象</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 新增POJO对象</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param value
 	 * @return
@@ -49,9 +49,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 新增POJO对象带过期时间</p> 
-	 * <p>Description: 单位秒</p> 
+	 *
+	 * <p>Title: 新增POJO对象带过期时间</p>
+	 * <p>Description: 单位秒</p>
 	 * @param key
 	 * @param value
 	 * @param timeout 秒
@@ -62,9 +62,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 从缓存取出一个POJO类</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 从缓存取出一个POJO类</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param clz
 	 * @return
@@ -74,9 +74,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 新增字符串</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 新增字符串</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param value
 	 * @return
@@ -95,9 +95,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 新增字符串带过期时间</p> 
-	 * <p>Description: 单位秒</p> 
+	 *
+	 * <p>Title: 新增字符串带过期时间</p>
+	 * <p>Description: 单位秒</p>
 	 * @param key
 	 * @param value
 	 * @param timeout
@@ -118,9 +118,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 获取字符串</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 获取字符串</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @return
 	 */
@@ -138,9 +138,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 判断是否存在</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 判断是否存在</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @return
 	 */
@@ -156,9 +156,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 指定节点过期时间</p> 
-	 * <p>Description: 单位 秒</p> 
+	 *
+	 * <p>Title: 指定节点过期时间</p>
+	 * <p>Description: 单位 秒</p>
 	 * @param key
 	 * @param expire
 	 * @return
@@ -169,9 +169,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 删除一个节点</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 删除一个节点</p>
+	 * <p>Description: </p>
 	 * @param key
 	 */
 	public void evict(String key) {
@@ -180,9 +180,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 删除节点</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 删除节点</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @return 是否删除成功
 	 */
@@ -197,9 +197,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 查询数据库节点数</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 查询数据库节点数</p>
+	 * <p>Description: </p>
 	 * @return
 	 */
 	public Long dbSize() {
@@ -214,9 +214,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 清空数据</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 清空数据</p>
+	 * <p>Description: </p>
 	 * @return
 	 */
 	public Boolean flushDB() {
@@ -231,9 +231,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 存入列表</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 存入列表</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param list
 	 * @return
@@ -244,9 +244,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 获取列表</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 获取列表</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param clz
 	 * @return
@@ -261,9 +261,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 清空所有缓存</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 清空所有缓存</p>
+	 * <p>Description: </p>
 	 * @return
 	 */
 	public Boolean flushAll() {
@@ -279,9 +279,9 @@ public class RedisClient {
 
 	// --操作hash-------------------------------
 	/**
-	 * 
-	 * <p>Title: 将一个对象放入hash结构中</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 将一个对象放入hash结构中</p>
+	 * <p>Description: </p>
 	 * @param key	redis节点标识
 	 * @param feild	主键值（或者联合主键拼接的字符串）
 	 * @param //value		对象
@@ -303,9 +303,9 @@ public class RedisClient {
 		}
 	}
 
-	/** 
+	/**
 	 * @Title 检查redis连接情况
-	 * @Description   
+	 * @Description
 	 */
 	public void checkRedisTemplate() {
 		if (redisTemplate == null) {
@@ -315,9 +315,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 将一个对象放入hash结构中，没有过期期限</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 将一个对象放入hash结构中，没有过期期限</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param feild
 	 * @param object
@@ -332,9 +332,9 @@ public class RedisClient {
 		}
 	}
 
-	/** 
-	 * 将map写入缓存 
-	 * @param key 
+	/**
+	 * 将map写入缓存
+	 * @param key
 	 * @param map 有主键作为feildkey的map （包含多个对象）
 	 * @param
 	 */
@@ -352,9 +352,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 存入数据库查询的结果集</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 存入数据库查询的结果集</p>
+	 * <p>Description: </p>
 	 * @param key	    缓存节点名称
 	 * @param pojos	    对象列表
 	 * @param pkNames 主键（包括联合主键）字段名称 （在数据库的中存储方式是 pkValue1-pkValue2-...）
@@ -372,9 +372,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * @Title <p>Title: 将POJO列表放入文件夹下的hash结构中</p> 
-	 * @Description <p>Description: </p> 
+	 *
+	 * @Title <p>Title: 将POJO列表放入文件夹下的hash结构中</p>
+	 * @Description <p>Description: </p>
 	 * @param folderName 文件夹名
 	 * @param key 主键
 	 * @param pojos POJO列表
@@ -384,13 +384,13 @@ public class RedisClient {
 		hSetListPOJO(folderName + ":" + key, pojos, pkNames);
 	}
 
-	/** 
-	 * 根据hashkeys列表获取缓存列表 
-	 *  
+	/**
+	 * 根据hashkeys列表获取缓存列表
+	 *
 	 * @param key 		主节点标识
 	 * @param feilds 	建议使用ArrayList<String> 类型
 	 * @param targetClass 对象类型
-	 * @return 
+	 * @return
 	 */
 	public <T> List<T> hGetListPOJO(String key, Collection<String> feilds, Class<T> targetClass) {
 		checkRedisTemplate();
@@ -407,11 +407,11 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * @Title <p>Title: 根据主键值数组获取hash缓存内容</p> 
+	 *
+	 * @Title <p>Title: 根据主键值数组获取hash缓存内容</p>
 	 * @param key 主节点标识
 	 * @param targetClass
-	 * @param pkValues 主键字段值 feilds => pkValues 
+	 * @param pkValues 主键字段值 feilds => pkValues
 	 * @return
 	 */
 	public <T> List<T> hGetListPOJO(String key, Class<T> targetClass, String... pkValues) {
@@ -419,13 +419,13 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * @Title <p>Title: 根据文件夹名、主键、目标对象类型 查询所有列表信息</p> 
-	 * @Description <p>Description: </p> 
+	 *
+	 * @Title <p>Title: 根据文件夹名、主键、目标对象类型 查询所有列表信息</p>
+	 * @Description <p>Description: </p>
 	 * @param folderName 文件夹名
 	 * @param key 主键
 	 * @param targetClass 目标类
-	 * @return 
+	 * @return
 	 */
 	public <T> List<T> hGetAHashListPOJOInFolder(String folderName, String key, Class<T> targetClass) {
 		checkRedisTemplate();
@@ -440,9 +440,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * @Title <p>Title: 根据文件夹名称、主键值获取hash缓存内容</p> 
-	 * @Description <p>Description: </p> 
+	 *
+	 * @Title <p>Title: 根据文件夹名称、主键值获取hash缓存内容</p>
+	 * @Description <p>Description: </p>
 	 * @param folderName 文件夹名
 	 * @param key 主键名
 	 * @param targetClass 目标POJO数据类型
@@ -457,11 +457,11 @@ public class RedisClient {
 		}
 	}
 
-	/** 
-	 * 向key对应的map中添加缓存对象 
-	 * @param key   cache对象key 
-	 * @param field map对应的key 
-	 * @param obj   对象 
+	/**
+	 * 向key对应的map中添加缓存对象
+	 * @param key   cache对象key
+	 * @param field map对应的key
+	 * @param obj   对象
 	 */
 	public <T> void hAddMap(String key, String field, T obj) {
 		try {
@@ -471,10 +471,10 @@ public class RedisClient {
 		}
 	}
 
-	/** 
+	/**
 	 * 获取map缓存 (所有数据)
-	 * @param key 
-	 * @return 
+	 * @param key
+	 * @return
 	 */
 	public Map<String, String> hGetAll(String key) {
 		checkRedisTemplate();
@@ -487,11 +487,11 @@ public class RedisClient {
 		}
 	}
 
-	/** 
-	 * 获取map缓存 
-	 * @param key 
-	 * @param clazz 
-	 * @return 
+	/**
+	 * 获取map缓存
+	 * @param key
+	 * @param clazz
+	 * @return
 	 */
 	public <T> T hGet(String key, String feild, Class<T> clazz) {
 		try {
@@ -503,11 +503,11 @@ public class RedisClient {
 		}
 	}
 
-	/** 
-	 * 删除map中的某个对象 
-	 * @date 2016年8月10日 
-	 * @param key   map对应的key 
-	 * @param field map中该对象的key 
+	/**
+	 * 删除map中的某个对象
+	 * @date 2016年8月10日
+	 * @param key   map对应的key
+	 * @param field map中该对象的key
 	 */
 	public void delMapField(String key, String... field) {
 		checkRedisTemplate();
@@ -519,10 +519,10 @@ public class RedisClient {
 		}
 	}
 
-	/** 
-	 * 模糊匹配删除redis某些key的缓存 
-	 *  
-	 * @param fuzzyRedisKey 
+	/**
+	 * 模糊匹配删除redis某些key的缓存
+	 *
+	 * @param fuzzyRedisKey
 	 */
 	public void deleteFuzzy(String fuzzyRedisKey) {
 		checkRedisTemplate();
@@ -534,9 +534,9 @@ public class RedisClient {
 	}
 
 	/**
-	 * 
-	 * <p>Title: 自增</p> 
-	 * <p>Description: </p> 
+	 *
+	 * <p>Title: 自增</p>
+	 * <p>Description: </p>
 	 * @param key
 	 * @param feild
 	 * @param delta 自增长度
@@ -547,10 +547,10 @@ public class RedisClient {
 		return redisTemplate.opsForHash().increment(key, feild, delta);
 	}
 
-	/** 
-	 * 重置redis的过期时间 
-	 * @param key 
-	 * @return 
+	/**
+	 * 重置redis的过期时间
+	 * @param key
+	 * @return
 	 */
 	public boolean resetExpireTime(String key, long timeout, TimeUnit unit) {
 		checkRedisTemplate();

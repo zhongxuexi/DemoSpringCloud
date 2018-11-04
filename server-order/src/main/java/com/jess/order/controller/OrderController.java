@@ -1,12 +1,14 @@
 package com.jess.order.controller;
 
 import com.google.common.collect.Maps;
+//import com.jess.common.component.redis.RedisClient;
 import com.jess.common.component.redis.RedisClient;
 import com.jess.common.service.MemberServiceFegin;
 import com.jess.common.util.LogUtil;
 import com.jess.common.util.Result;
 import com.jess.common.util.EmailUtil;
 import com.jess.common.util.excelUtil.ExportExcel;
+import com.jess.order.entity.Version;
 import com.jess.order.service.VersionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,11 +27,11 @@ import java.util.Map;
 @CrossOrigin
 @Api(value = "订单管理",tags = {"订单管理接口"})
 @RefreshScope//此注解，是在访问/refresh后服务端加载新配置，自动把新配置注入
-public class OrderController {;
-    @Autowired
-    private MemberServiceFegin memberServiceFegin;
+public class OrderController {
     @Autowired
     private RedisClient redisClient;
+    @Autowired
+    private MemberServiceFegin memberServiceFegin;
     @Autowired
     private VersionService versionService;
 
@@ -77,8 +79,9 @@ public class OrderController {;
 
     @ApiOperation(value = "测试redis客户端", notes = "test redis")
     @GetMapping(value = "/testRedis")
-    public String testRedis(@RequestParam("key") String key,@RequestParam("value") String value){
-        redisClient.set(key,value);
+    public String testRedis(@RequestParam("key") String key){
+        Version version = versionService.findById(5L);
+        redisClient.set(key,version);
         return redisClient.get(key);
     }
 }

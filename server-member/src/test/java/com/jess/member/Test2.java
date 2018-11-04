@@ -1,6 +1,8 @@
 package com.jess.member;
 
 import com.google.common.collect.Maps;
+import com.jess.common.component.redis.RedisClient;
+//import com.jess.common.component.redis.JedisClusterConfig;
 import com.jess.common.util.ObjectToMapUtil;
 import com.jess.member.entity.Girl;
 import com.jess.member.entity.User;
@@ -10,10 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import redis.clients.jedis.JedisCluster;
-
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -29,8 +29,14 @@ public class Test2 {
     private UserService userService;
     @Autowired
     private GirlService girlService;
+    //@Autowired
+    //private JedisCluster jedisCluster;
     @Autowired
-    private JedisCluster jedisCluster;
+    private RedisClient redisClient;
+    //@Autowired
+    //private JedisClusterConfig jedisClusterConfig;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void test21() throws Exception {
@@ -46,6 +52,11 @@ public class Test2 {
 
     @Test
     public void test22(){
-        System.out.println(jedisCluster.get("zhong"));
+        //redisTemplate.boundValueOps("rrr").set("yyyyyyyy");
+       // System.out.println("============="+redisTemplate.boundValueOps("rrr").get());//
+        //jedisClusterConfig.getJedisCluster().set("bbb","bbbbbbbbbb");
+       // System.out.println(jedisClusterConfig.getJedisCluster().get("bbb"));
+        redisClient.set("zzz","ddddddddddd");
+        System.out.println("++++++++++++++++++++"+redisClient.get("zzz"));
     }
 }
