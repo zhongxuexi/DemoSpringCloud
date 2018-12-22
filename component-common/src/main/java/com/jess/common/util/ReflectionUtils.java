@@ -21,6 +21,7 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @Title <p>ClassName: ReflectionUtils</p>
@@ -97,7 +98,7 @@ public class ReflectionUtils {
     public static Object getFieldValue(final Object obj, final String fieldName) {
         Object result = null;
         Field field = getAccessibleField(obj, fieldName);
-        if (field == null) {
+        if (ObjectUtils.isEmpty(field)) {
             logger.error("在对象 [{}]中找不到字段 [{}] ", obj, fieldName);
             return result;
         }
@@ -131,9 +132,6 @@ public class ReflectionUtils {
         List<String> list = Lists.newArrayList();
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);      //设置对象的访问权限，保证对private的属性的访问
-//			if(fields[i].getName().contains("Time")||fields[i].getName().contains("delete")){
-//				continue;
-//			}
             list.add(fields[i].getName());
         }
         String[] str = new String[list.size()];

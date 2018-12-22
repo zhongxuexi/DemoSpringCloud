@@ -2,6 +2,7 @@ package com.jess.member.config.db;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.jess.common.config.commonDB.DynamicDataSource;
+import com.jess.common.config.mybatis.MapWrapperFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -59,6 +60,7 @@ public class DataSourceConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dynamicDataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setObjectWrapperFactory(new MapWrapperFactory());
         bean.setDataSource(dynamicDataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/**/**.xml"));
         org.apache.ibatis.session.Configuration config = bean.getObject().getConfiguration();

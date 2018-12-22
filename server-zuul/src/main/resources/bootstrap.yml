@@ -13,9 +13,9 @@ zuul:
 ribbon:
   okhttp:
     enabled: true
-  ReadTimeout: 20000
-  SocketTimeout: 20000
-  ConnectTimeout: 20000
+  ReadTimeout: 40000
+  SocketTimeout: 40000
+  ConnectTimeout: 40000
   maxAutoRetries: 0   #对当前实例的重试次数
   maxAutoRetriesNextServer: 1   #切换实例的重试次数，建议设置为当前服务的实例数。但不建议设置太大
   okToRetryOnAllOperations: true    #对所有操作请求都进行重试

@@ -2,6 +2,7 @@ package com.jess.member.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.google.common.collect.Maps;
 import com.jess.common.component.redis.RedisKeys;
 import com.jess.common.util.ObjectToMapUtil;
 //import com.jess.common.component.redis.RedisClient;
@@ -11,6 +12,7 @@ import com.jess.member.dao.extend.UserExtendMapper;
 import com.jess.member.entity.User;
 import com.jess.member.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,12 +27,13 @@ import java.util.Map;
  * Created by zhongxuexi on 2018/6/7.
  */
 @Service
+@CacheConfig(cacheNames = RedisKeys._CACHE_SHORT)
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserExtendMapper userExtendMapper;
     @Autowired
     private UserMapper userMapper;
-   // @Autowired
+    // @Autowired
     //private RedisClient redisClient;
 
     @Override
@@ -53,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    @CacheEvict(value = RedisKeys._CACHE_COMMON,allEntries = true)
+    @CacheEvict(value = RedisKeys._CACHE_COMMON, allEntries = true)
     @Override
     public Integer updateUser(User user) throws Exception {
         if (user == null) {
@@ -98,13 +101,12 @@ public class UserServiceImpl implements UserService {
     @Cacheable(value = RedisKeys._CACHE_COMMON)
     @Override
     public Map<String, Object> findUserById(Long id, String field) throws Exception {
-        String[] fields = ObjectToMapUtil.getFields(field, User.class);
         Example example = new Example(User.class);
         example.or().andEqualTo("id", id);
-        example.selectProperties(fields);
         User user = userMapper.selectOneByExample(example);  //db取数据
-        Map resultMap = ObjectToMapUtil.getResultMap(fields, user);
-        return resultMap;
+        Map<String, Object> map = Maps.newLinkedHashMap();
+        map.put(field, user);
+        return ObjectToMapUtil.getCombinationMap(map);
     }
 
     @Override
@@ -112,23 +114,20 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(id);
     }
 
-    @Cacheable(value = RedisKeys._CACHE_SHORT)
+    @Cacheable(key = "#root.targetClass.name+'.'+#root.method.name+'_'+#userName+','+#field")
     @Override
     public List<Map<String, Object>> findUserByName(String userName, String field) throws Exception {
         Example example = new Example(User.class);
         example.or().andLike("username", "%" + userName + "%").andCondition("delete_state=0");
-        String[] fields = ObjectToMapUtil.getFields(field, User.class);
-        example.selectProperties(fields);
         List<User> users = userMapper.selectByExample(example);
-        List<Map<String, Object>> resultMap = ObjectToMapUtil.getResultListMap(fields,users);
-        return resultMap;
+        return ObjectToMapUtil.getInstance().getCombinationMapList(field, users);
     }
 
-    @Cacheable(value = RedisKeys._CACHE_SHORT)
+    @Cacheable(key = "#root.targetClass.name+'.'+#root.method.name+'_'+#age", unless = "#result==null")
     @Override
     public List<User> findUserByAge(Byte age) throws Exception {
         Example example = new Example(User.class);
-        example.or().andEqualTo("age", age);
+        example.or().andEqualTo("age", age).andCondition("delete_state=0");
         return userMapper.selectByExample(example);
     }
 }

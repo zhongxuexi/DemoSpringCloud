@@ -15,10 +15,10 @@ import java.util.Map;
 public class RedisKeys {
 
     public static final String _CACHE_COMMON = "_cache_common";// 缓存key--common
-    private static final Long _CACHE_COMMON_SECOND = 24*60*60L;// 缓存时间(秒)--common
+    private static final Long _CACHE_COMMON_SECOND = 1*60*60L;// 缓存时间1小时(秒)--common
 
     public static final String _CACHE_SHORT = "_cache_short";// 缓存key-short
-    private static final Long _CACHE_SHORT_SECOND = 60L;// 缓存时间(秒)--short
+    private static final Long _CACHE_SHORT_SECOND = 10*60L;// 缓存时间10分钟(秒)--short
 
     // 根据key设定具体的缓存时间
     private Map<String, Long> expiresMap = null;
